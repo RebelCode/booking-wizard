@@ -1,6 +1,17 @@
 export default function (VModelProxy) {
   return {
+    template: '#eddbk-session-step-template',
+
     mixins: [ VModelProxy ],
+
+    inject: {
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} `service-session-selector` Service session selector component's definition.
+       */
+      'service-session-selector': 'service-session-selector'
+    },
 
     props: {
       /**

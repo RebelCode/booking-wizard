@@ -1,5 +1,7 @@
 export default function () {
   return {
+    template: '#eddbk-wizard-template',
+
     inject: {
       /**
        * @since [*next-version*]
@@ -13,7 +15,49 @@ export default function () {
        *
        * @property {Moment} moment Moment JS instance.
        */
-      moment: 'moment'
+      moment: 'moment',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {VueComponent} `form-wizard` Form wizard component.
+       */
+      'form-wizard': 'form-wizard',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {VueComponent} `tab-content` Wizard's tab content component.
+       */
+      'tab-content': 'tab-content',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {VueComponent} `wizard-button` Wizard's button component.
+       */
+      'wizard-button': 'wizard-button',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} `service-step` Service step component's definition.
+       */
+      'service-step': 'service-step',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} `session-step` Session step component's definition.
+       */
+      'session-step': 'session-step',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} `confirmation-step` Confirmation step component's definition.
+       */
+      'confirmation-step': 'confirmation-step',
     },
 
     data () {
@@ -100,7 +144,7 @@ export default function () {
        *
        * @return {Promise<any>} Booking creation promise object.
        */
-      book () {
+      createBooking () {
         this.isCreatingBooking = true
         return this.bookingsApi.create({
           service: this.service,
@@ -113,6 +157,28 @@ export default function () {
             this.redirect(this.config.redirectUrl)
           }
         })
+      },
+
+      /**
+       * Can user switch from service selection tab.
+       *
+       * @since [*next-version*]
+       *
+       * @return {boolean} Can user switch from service tab.
+       */
+      canSwitchFromServiceTab () {
+        return !!this.service
+      },
+
+      /**
+       * Can user switch from session selection tab.
+       *
+       * @since [*next-version*]
+       *
+       * @return {boolean} Can user switch from session selection tab.
+       */
+      canSwitchFromSessionTab () {
+        return !!this.session
       },
 
       /**
@@ -134,6 +200,15 @@ export default function () {
       getBrowserTimezone () {
         return this.moment.tz.guess()
       }
+    },
+
+    components: {
+      'form-wizard': 'form-wizard',
+      'tab-content': 'tab-content',
+      'wizard-button': 'wizard-button',
+      'service-step': 'service-step',
+      'session-step': 'session-step',
+      'confirmation-step': 'confirmation-step',
     }
   }
 }

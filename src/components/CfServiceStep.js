@@ -1,5 +1,7 @@
 export default function (VModelProxy) {
   return {
+    template: '#eddbk-service-step-template',
+
     mixins: [ VModelProxy ],
 
     inject: {
