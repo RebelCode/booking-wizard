@@ -4,6 +4,8 @@ import servicesApi from './servicesApi'
 /**
  * Creates api services definitions.
  *
+ * @since [*next-version*]
+ *
  * @param {object} dependencies List of dependencies.
  *
  * @return {object} List of api services definitions.
