@@ -6,7 +6,14 @@ export default function () {
        *
        * @property {{create: Function}} bookingsApi API wrapper for creating bookings.
        */
-      bookingsApi: 'bookingsApi'
+      bookingsApi: 'bookingsApi',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {Moment} moment Moment JS instance.
+       */
+      moment: 'moment'
     },
 
     data () {
@@ -99,7 +106,7 @@ export default function () {
           service: this.service,
           session: this.session,
           notes: this.notes,
-          timezone: this.detectUserTimezone()
+          timezone: this.getBrowserTimezone()
         }).then(() => {
           this.isCreatingBooking = false
           if (this.config.redirectUrl) {
@@ -118,13 +125,13 @@ export default function () {
       },
 
       /**
-       * Detect user timezone.
+       * Detect browser timezone.
        *
        * @since [*next-version*]
        *
        * @return {string} Timezone of user.
        */
-      detectUserTimezone () {
+      getBrowserTimezone () {
         return this.moment.tz.guess()
       }
     }
