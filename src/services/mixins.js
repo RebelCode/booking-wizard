@@ -1,5 +1,3 @@
-import VModelProxy from './VModelProxy'
-
 /**
  * Creates mixins definitions.
  *
@@ -12,14 +10,16 @@ import VModelProxy from './VModelProxy'
 export default function (dependencies) {
   return {
     /**
-     * Mixin for proxying component's model value.
+     * Mixin for providing datetime creation functions in components.
      *
      * @since [*next-version*]
      *
+     * @param {Container} container DI Container.
+     *
      * @return {object}
      */
-    VModelProxy () {
-      return VModelProxy()
+    CreateDatetimeCapable (container) {
+      return dependencies.bookingWizardComponents.MfCreateDatetimeCapable(container.moment)
     }
   }
 }

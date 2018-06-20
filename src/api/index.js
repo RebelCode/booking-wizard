@@ -13,17 +13,6 @@ import servicesApi from './servicesApi'
 export default function (dependencies) {
   return {
     /**
-     * Http client.
-     *
-     * @since [*next-version*]
-     *
-     * @return {HttpClient}
-     */
-    httpClient () {
-      return dependencies.axios
-    },
-
-    /**
      * Wrapper for interacting with bookings API.
      *
      * @since [*next-version*]

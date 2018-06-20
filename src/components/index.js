@@ -28,6 +28,8 @@ export default function () {
      *
      * @since [*next-version*]
      *
+     * @param {Container} container DI Container.
+     *
      * @return {object}
      */
     'service-step' (container) {
@@ -39,6 +41,8 @@ export default function () {
      *
      * @since [*next-version*]
      *
+     * @param {Container} container DI Container.
+     *
      * @return {object}
      */
     'session-step' (container) {
@@ -49,6 +53,8 @@ export default function () {
      * Confirmation step component in wizard.
      *
      * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
      *
      * @return {object}
      */
