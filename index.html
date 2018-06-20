@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <eddbk-wizard :config="{...}"></eddbk-wizard>
+</div>
+<div id="eddbk-wizard">
+    <!-- TO BE IMPLEMENTED; -->
+    <wizard>
+        <tab-content>
+            <service-step v-model="service"></service-step>
+        </tab-content>
+        <tab-content>
+            <session-step v-model="session" :service="service"></session-step>
+        </tab-content>
+        <tab-content>
+            <confirmation-step v-model="notes" :service="service" :session="session"></confirmation-step>
+        </tab-content>
+    </wizard>
+</div>
+</body>
+</html>
