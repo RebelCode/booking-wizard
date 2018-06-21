@@ -72,26 +72,6 @@ export default function (dependencies) {
     },
 
     /**
-     * Sessions API.
-     *
-     * @since [*next-version*]
-     *
-     * @param {Container} container DI Container.
-     *
-     * @return {SessionApi}
-     */
-    sessionApi (container) {
-      return new dependencies.bookingWizardComponents.SessionApi(
-        container.httpClient,
-        container.config.endpoints.sessions,
-        container.requestCache,
-        container.rangeCache,
-        container.sessionReadTransformer,
-        container.moment
-      )
-    },
-
-    /**
      * Hash function implementation.
      *
      * @since [*next-version*]
@@ -112,7 +92,7 @@ export default function (dependencies) {
      * @return {RequestCache}
      */
     requestCache (container) {
-      return dependencies.stdLib.RequestCache(container.hashFunction)
+      return new dependencies.stdLib.RequestCache(container.hashFunction)
     },
 
     /**
@@ -125,7 +105,7 @@ export default function (dependencies) {
      * @return {RangeCache}
      */
     rangeCache (container) {
-      return dependencies.stdLib.RangeCache(container.moment, container.differenceWith, container.isEqual)
+      return new dependencies.bookingWizardComponents.RangeCache(container.moment, container.differenceWith, container.isEqual)
     },
 
     /**

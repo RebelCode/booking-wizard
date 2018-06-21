@@ -11,9 +11,7 @@
     }
 </style>
 <div id="app">
-    <app inline-template>
-        <eddbk-wizard></eddbk-wizard>
-    </app>
+    <eddbk-wizard></eddbk-wizard>
 </div>
 <script type="text/x-template" id="eddbk-wizard-template">
     <div class="edd-booking-wizard">
@@ -118,7 +116,7 @@
         stdLib: 'https://unpkg.com/@rebelcode/std-lib@0.1.4/dist/std-lib.umd',
         bottle: 'https://cdnjs.cloudflare.com/ajax/libs/bottlejs/1.6.1/bottle.min',
         vue: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.4/vue',
-        bookingWizardComponents: 'https://unpkg.com/@rebelcode/booking-wizard-components@0.1.2/dist/lib.min',
+        bookingWizardComponents: '/dist/js/bwc.min',
         axios: 'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min',
         humanizeDuration: 'https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.14.0/humanize-duration.min',
         uiFramework: 'https://unpkg.com/@rebelcode/ui-framework@0.1.1/dist/static/js/uiFramework',
@@ -140,22 +138,25 @@
         di.factory(serviceName, serviceList[serviceName])
       }
 
-      di.factory('app', function () {
-        return {
-          inject: ['eddbk-wizard'],
-          data: function () {
-            return {
-              //...
-            }
-          },
-          components: {
-            'eddbk-wizard': 'eddbk-wizard',
-          }
-        }
-      })
       di.factory('config', function () {
         return {
-          // ...
+          endpoints: {
+            sessions: {
+              'fetch': {
+                'method': 'get',
+                'endpoint': 'http://scotchbox.local/index.php?rest_route=/eddbk/v1/sessions/',
+              }
+            }
+          },
+          datetime: {
+            'tzFree': 'YYYY-MM-DD HH:mm:ss',
+            'store': 'YYYY-MM-DDTHH:mm:ssZ',
+            'sessionTime': 'h:mm a',
+            'dayFull': 'dddd Do MMMM YYYY',
+            'dayShort': 'D MMMM YYYY',
+            'monthKey': 'YYYY-MM',
+            'dayKey': 'YYYY-MM-DD'
+          }
         }
       })
       di.factory('document', function () {

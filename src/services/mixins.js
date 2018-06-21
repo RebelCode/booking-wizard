@@ -1,3 +1,5 @@
+import mixins from './../mixins'
+
 /**
  * Creates mixins definitions.
  *
@@ -9,6 +11,11 @@
  */
 export default function (dependencies) {
   return {
+    /**
+     * List of all app mixins.
+     */
+    ...mixins(dependencies),
+
     /**
      * Mixin for providing datetime creation functions in components.
      *
