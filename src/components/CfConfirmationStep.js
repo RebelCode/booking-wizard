@@ -25,6 +25,21 @@ export default function (VModelProxy, TranslateCapable) {
        * @property {string} value Booking confirmation notes, model for current component.
        */
       value: {},
+    },
+
+    computed: {
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} appointment Summary information for appointment.
+       */
+      appointment () {
+        return {
+          price: 'PRICE', // @todo
+          start: 'START TIME', // @todo
+          duration: 'DURATION' // @todo
+        }
+      }
     }
   }
 }

@@ -32,17 +32,12 @@
             </tab-content>
 
             <template slot="footer" scope="{activeTabIndex, prevTab, isLastStep, nextTab, fillButtonStyle}">
-                <!--<div class="wizard-footer-left" v-if="selectedService && props.activeTabIndex === 0">-->
-                <!--<div>{{ serviceInfo.pricePreview }}</div>-->
-                <!--<div style="opacity: .6" v-if="serviceInfo.isOtherSessionsAvailable">-->
-                <!--{{ _('More appointment durations available in the next step.') }}-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="wizard-footer-clear" v-if="selectedSession && props.activeTabIndex === 2">-->
-                <!--{{ sessionInfo }}-->
-                <!--{{ $_('Click Add to cart to continue.') }}-->
-                <!--</div>-->
+                <div class="wizard-footer-left" v-if="service && activeTabIndex === 0">
+                    <div>{{ serviceInfo.pricePreview }}</div>
+                    <div style="opacity: .6" v-if="serviceInfo.isOtherSessionsAvailable">
+                    {{ _('More appointment durations available in the next step.') }}
+                    </div>
+                </div>
 
                 <!--<div class="wizard-footer-clear" style="color: red" v-if="errorMessage">-->
                 <!--{{ errorMessage }}-->

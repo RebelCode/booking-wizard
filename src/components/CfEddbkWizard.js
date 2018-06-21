@@ -125,6 +125,23 @@ export default function (TranslateCapable) {
       },
     },
 
+    computed: {
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} serviceInfo Description of selected service.
+       */
+      serviceInfo () {
+        return {
+          isOtherSessionsAvailable: Object.keys(this.service.sessionLengths).length > 1,
+          pricePreview: this._('Starting at %(price)s for a %(duration)s appointment.', {
+            price: 'minSessionPrice', // @todo
+            duration: 'minSessionLengthHumanized' // @todo
+          })
+        }
+      }
+    },
+
     /**
      * Hook, runs when component is created. It will select service, if service
      * is passed to wizard configuration.
