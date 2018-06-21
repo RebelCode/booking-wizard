@@ -1,6 +1,8 @@
-export default function (VModelProxy) {
+export default function (VModelProxy, TranslateCapable) {
   return {
-    mixins: [ VModelProxy ],
+    template: '#eddbk-confirmation-step-template',
+
+    mixins: [ VModelProxy, TranslateCapable ],
 
     props: {
       /**

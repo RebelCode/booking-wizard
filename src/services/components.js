@@ -83,6 +83,39 @@ export default function (dependencies) {
      */
     datepicker () {
       return dependencies.datepicker
+    },
+
+    /**
+     * Form wizard component.
+     *
+     * @since [*next-version*]
+     *
+     * @return {object}
+     */
+    'form-wizard' () {
+      return dependencies.formWizard.FormWizard
+    },
+
+    /**
+     * Wizard button component.
+     *
+     * @since [*next-version*]
+     *
+     * @return {object}
+     */
+    'wizard-button' () {
+      return dependencies.formWizard.WizardButton
+    },
+
+    /**
+     * Wizard tab content component.
+     *
+     * @since [*next-version*]
+     *
+     * @return {object}
+     */
+    'tab-content' () {
+      return dependencies.formWizard.TabContent
     }
   }
   return {

@@ -1,4 +1,5 @@
 import VModelProxy from './VModelProxy'
+import TranslateCapable from './TranslateCapable'
 
 /**
  * Creates mixins definitions.
@@ -20,6 +21,17 @@ export default function (dependencies) {
      */
     VModelProxy () {
       return VModelProxy()
+    },
+
+    /**
+     * Mixin that adds method for translating strings.
+     *
+     * @since [*next-version*]
+     *
+     * @return {object}
+     */
+    TranslateCapable () {
+      return TranslateCapable()
     }
   }
 }

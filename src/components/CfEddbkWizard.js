@@ -1,6 +1,8 @@
-export default function () {
+export default function (TranslateCapable) {
   return {
     template: '#eddbk-wizard-template',
+
+    mixins: [ TranslateCapable ],
 
     inject: {
       /**

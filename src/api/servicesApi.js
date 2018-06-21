@@ -21,6 +21,9 @@ export default function (resourceUrl, httpClient) {
      */
     fetch (params = {}) {
       return httpClient.get(resourceUrl, { params })
+        .then(response => {
+          return response.data.items
+        })
     }
   }
 }

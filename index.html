@@ -68,7 +68,7 @@
     </div>
 </script>
 <script type="text/x-template" id="eddbk-confirmation-step-template">
-<div>
+<div v-if="service">
     <div class="service-info">
         <p>{{ _('You are booking:') }} <strong>{{ service.name }}</strong> - {{ appointment.duration }}</p>
         <p>{{ _('Starting at') }} <strong>{{ appointment.start }}</strong></p>
@@ -77,7 +77,7 @@
 </div>
 </script>
 <script type="text/x-template" id="eddbk-session-step-template">
-<div>
+<div v-if="service">
     <div class="edd-booking-wizard__info">
         {{ _('You are booking a ') }} <strong>{{ service.name }}</strong>
     </div>
@@ -117,21 +117,24 @@
         bottle: 'https://cdnjs.cloudflare.com/ajax/libs/bottlejs/1.6.1/bottle.min',
         vue: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.4/vue',
         bookingWizardComponents: '/dist/js/bwc.min',
+        formWizard: 'https://unpkg.com/vue-form-wizard/dist/vue-form-wizard',
         axios: 'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min',
         humanizeDuration: 'https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.14.0/humanize-duration.min',
         uiFramework: 'https://unpkg.com/@rebelcode/ui-framework@0.1.1/dist/static/js/uiFramework',
         datepicker: 'https://cdn.jsdelivr.net/npm/vuejs-datepicker@0.9.26/dist/build.min',
         lodash: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min',
+        textFormatter: 'https://unpkg.com/sprintf-js@1.1.1/dist/sprintf.min',
         moment: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min',
         momentTimezone: 'https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.17/moment-timezone-with-data-2012-2022.min',
         momentRange: 'https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.1/moment-range',
       }
     })
 
-    var dependenciesList = ['bookingWizard', 'bookingWizardComponents', 'uiFramework', 'bottle', 'vue', 'axios', 'humanizeDuration', 'cjs!datepicker',
+    var dependenciesList = ['formWizard', 'textFormatter', 'bookingWizard', 'bookingWizardComponents', 'uiFramework', 'bottle', 'vue', 'axios', 'humanizeDuration', 'cjs!datepicker',
       'moment', 'lodash', 'cjs!momentRange', 'stdLib']
 
     function defineServices (di, dependencies) {
+      console.info(dependencies)
       var serviceList = dependencies.bookingWizard.services(dependencies, document)
       for (var i = 0; i < Object.keys(serviceList).length; i++) {
         var serviceName = Object.keys(serviceList)[i]
@@ -148,6 +151,8 @@
               }
             }
           },
+          bookingsResourceUrl: 'http://scotchbox.local/index.php?rest_route=/eddbk/v1/bookings/',
+          servicesResourceUrl: 'http://scotchbox.local/index.php?rest_route=/eddbk/v1/services/',
           datetime: {
             'tzFree': 'YYYY-MM-DD HH:mm:ss',
             'store': 'YYYY-MM-DDTHH:mm:ssZ',

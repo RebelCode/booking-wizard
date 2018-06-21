@@ -143,6 +143,47 @@ export default function (dependencies) {
      */
     lodash () {
       return dependencies.lodash.noConflict()
-    }
+    },
+
+    /**
+     * Text formatter.
+     *
+     * @since [*next-version*]
+     *
+     * @return {Function}
+     */
+    textFormatter () {
+      return dependencies.textFormatter.vsprintf
+    },
+
+    /**
+     * Format translator.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {FormatTranslator}
+     */
+    translator (container) {
+      return new dependencies.uiFramework.I18n.FormatTranslator(
+        container.textFormatter
+      )
+    },
+
+    /**
+     * Function for translating strings with params.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {Function}
+     */
+    translate (container) {
+      return function (format, params) {
+        return container.translator.translate(format, params)
+      }
+    },
   }
 }

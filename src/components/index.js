@@ -17,10 +17,12 @@ export default function () {
      *
      * @since [*next-version*]
      *
+     * @param {Container} container DI Container.
+     *
      * @return {object}
      */
-    'eddbk-wizard' () {
-      return CfEddbkWizard()
+    'eddbk-wizard' (container) {
+      return CfEddbkWizard(container.TranslateCapable)
     },
 
     /**
@@ -33,7 +35,7 @@ export default function () {
      * @return {object}
      */
     'service-step' (container) {
-      return CfServiceStep(container.VModelProxy)
+      return CfServiceStep(container.VModelProxy, container.TranslateCapable)
     },
 
     /**
@@ -46,7 +48,7 @@ export default function () {
      * @return {object}
      */
     'session-step' (container) {
-      return CfSessionStep(container.VModelProxy)
+      return CfSessionStep(container.VModelProxy, container.TranslateCapable)
     },
 
     /**
@@ -59,7 +61,7 @@ export default function () {
      * @return {object}
      */
     'confirmation-step' (container) {
-      return CfConfirmationStep(container.VModelProxy)
+      return CfConfirmationStep(container.VModelProxy, container.TranslateCapable)
     }
   }
 }
