@@ -43,7 +43,7 @@ export default function (dependencies) {
      * @return {Moment}
      */
     moment (container) {
-      const moment = dependencies.moment
+      const moment = dependencies.momentTimezone
       return dependencies.momentRange.extendMoment(moment)
     },
 

@@ -106,6 +106,110 @@
         </div>
     </div>
 </script>
+
+<script type="text/x-template" id="service-session-selector-template">
+    <div>
+        <div>value: <code>{{ value }}</code></div>
+
+        <template v-if="!service">
+            <div class="description">Please select service to choose available session for booking.</div>
+        </template>
+        <template v-else>
+            <div v-if="isSessionsLoading">
+                <h1>LOADING...</h1>
+            </div>
+            <div>
+                <div><code>selected session duration: {{ sessionDuration }}</code></div>
+                <session-duration-picker
+                        v-model="sessionDuration"
+                        :service="service"
+                ></session-duration-picker>
+            </div>
+            <div>
+                <session-date-picker
+                        v-model="selectedDaySessions"
+                        :is-daily-duration="isDailyDuration"
+                        :selected-day.sync="selectedDay"
+                        :session.sync="session"
+                        :loading="isSessionsLoading"
+                        :selected-session-length="sessionDuration"
+                        :available-sessions="sessions"
+                        :prev-available-day.sync="prevAvailableDay"
+                        :next-available-day.sync="nextAvailableDay"
+                        @changedMonth="loadSessions"
+                ></session-date-picker>
+            </div>
+            <div v-if="!isDailyDuration">
+                <session-time-picker v-model="session"
+                                     :selected-day.sync="selectedDay"
+                                     :selected-session-length="sessionDuration"
+                                     :service="service"
+                                     :timezone="timezone"
+                                     :sessions="selectedDaySessions"
+                                     :prev-available-day="prevAvailableDay"
+                                     :next-available-day="nextAvailableDay"
+                ></session-time-picker>
+                selectedSessionLabel: {{ selectedSessionLabel }}
+            </div>
+        </template>
+    </div>
+</script>
+<script type="text/x-template" id="session-date-picker-template">
+    <div class="form-row">
+        <div><code>selected day in date: {{ selectedDay }}</code></div>
+        <div class="form-row__label form-row__label--smaller">
+            Month
+            <span class="loading-inline" v-if="loading"></span>
+        </div>
+        <div class="form-row__input exclusions-datepicker">
+            <datepicker v-model="selectedDayProxy"
+                        :inline="true"
+                        @changedMonth="onMonthChange"
+                        :open-date="openedOnDate"
+                        :disabled="{ customPredictor: isDateDisabled, to: today }"
+                        :highlighted="{ dates: sessionDays, includeDisabled: true }"
+                        class="sessions-datepicker"
+                        maximum-view="day"
+            ></datepicker>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="session-time-picker-template">
+    <div>
+        <div class="form-row">
+            <div class="form-row__label form-row__label--smaller">Session</div>
+            <div class="form-row__input">
+                <div class="session-picker">
+                    <div class="session-picker-header">
+                        <button :disabled="prevAvailableDay ? false : 'disabled'" @click="goToPrevDay">Prev</button>
+                        <span>{{ selectedDaySessionsLabel }}</span>
+                        <button :disabled="nextAvailableDay ? false : 'disabled'" @click="goToNextDay">Next</button>
+                    </div>
+                    <div class="session-picker-buttons">
+                        <div v-for="session in visibleSessions"
+                             @click="select(session)"
+                             :class="['session-picker-button', isSelected(session) ? 'session-picker-button--selected' : '']"
+                        >
+                            {{ sessionLabel(session) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="session-duration-picker-template">
+    <div class="form-row">
+        <div class="form-row__label form-row__label--smaller">Duration</div>
+        <div class="form-row__input">
+            <select v-model="valueProxy" style="width: 100%">
+                <option :value="sessionLength" v-for="sessionLength in service.sessionLengths">
+                    {{ sessionLengthLabel(sessionLength) }}
+                </option>
+            </select>
+        </div>
+    </div>
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // get default configuration inside the Bottle instance
@@ -131,7 +235,7 @@
     })
 
     var dependenciesList = ['formWizard', 'textFormatter', 'bookingWizard', 'bookingWizardComponents', 'uiFramework', 'bottle', 'vue', 'axios', 'humanizeDuration', 'cjs!datepicker',
-      'moment', 'lodash', 'cjs!momentRange', 'stdLib']
+      'moment', 'momentTimezone', 'lodash', 'cjs!momentRange', 'stdLib']
 
     function defineServices (di, dependencies) {
       console.info(dependencies)

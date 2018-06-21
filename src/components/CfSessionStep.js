@@ -29,6 +29,10 @@ export default function (VModelProxy, TranslateCapable) {
        * @property {BookingSession} value Selected booking session, model for current component.
        */
       value: {}
+    },
+
+    components: {
+      'service-session-selector': 'service-session-selector'
     }
   }
 }
