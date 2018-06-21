@@ -4,7 +4,7 @@
   "description": "Booking wizard on customer's side",
   "main": "dist/js/app.min.js",
   "scripts": {
-    "dev": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=dev ./node_modules/webpack/bin/webpack.js --watch",
+    "dev": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=dev ./node_modules/.bin/webpack-dev-server --open",
     "build": "./node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production ./node_modules/webpack/bin/webpack.js",
     "prepublish": "npm run build"
   },
@@ -27,7 +27,9 @@
     "vue": "^2.5.13",
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.10.0"
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   },
   "author": "RebelCode"
 }

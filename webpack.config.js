@@ -1,21 +1,18 @@
 var debug = process.env.NODE_ENV !== 'production'
 var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 let config = {
+  mode: debug ? 'development' : 'production',
   context: __dirname,
-
   devtool: debug ? 'inline-sourcemap' : false,
   plugins: debug ? [
-    new webpack.optimize.HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: 'index.html',
       inject: true
     }),
   ] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      sourcemap: false
-    }),
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
     rules: [
@@ -26,7 +23,9 @@ let config = {
   output: {
     path: __dirname + '/dist/js',
     filename: 'app.min.js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    library: 'bookingWizard',
+    umdNamedDefine: true,
   }
 }
 

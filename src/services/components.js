@@ -1,3 +1,5 @@
+import components from './../components'
+
 /**
  * Components definitions.
  *
@@ -6,7 +8,12 @@
  * @return {object} List of components.
  */
 export default function (dependencies) {
-  return {
+  const appComponents = {
+    /**
+     * List of app components.
+     */
+    ...components(dependencies),
+
     /**
      * Component for selecting session for service.
      *
@@ -76,6 +83,33 @@ export default function (dependencies) {
      */
     datepicker () {
       return dependencies.datepicker
+    }
+  }
+  return {
+    ...appComponents,
+
+    /**
+     * List of all registered components.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    components (container) {
+      let components = {}
+      /*
+       * Get all registered components and provide them to
+       * Vue root components only if their name is not started
+       * with '_' or 'abstract'
+       */
+      Object.keys(appComponents).filter(key => {
+        return key[0] !== '_' && key.indexOf('abstract') === -1
+      }).map(key => {
+        components[key] = container[key]
+      })
+      return components
     }
   }
 }
