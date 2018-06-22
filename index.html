@@ -20,6 +20,7 @@
                      :nextButtonText="_('Next')"
                      :backButtonText="_('Back')"
                      :finishButtonText="_('Finish')"
+                     color="#17a7dd"
         >
             <tab-content :before-change="canSwitchFromServiceTab">
                 <service-step v-model="service"></service-step>
@@ -300,5 +301,21 @@
   })
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.js"></script>
+
+
+<style>
+    html {
+        /*background-color: rgba(43, 36, 62, 0.3);*/
+    }
+    .edd-booking-wizard {
+        max-width: 38rem;
+        margin: 4rem auto;
+        /*overflow: hidden;*/
+        /*border-radius: 6px !important;*/
+        /*box-shadow: 0 5px 50px rgba(0, 0, 0, 0.3);*/
+    }
+</style>
+<link rel='stylesheet' id='twentyseventeen-fonts-css'  href='https://fonts.googleapis.com/css?family=Libre+Franklin%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C800%2C800i&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyseventeen-style-css'  href='http://scotchbox.local/wp/wp-content/themes/twentyseventeen/style.css?ver=4.9.2' type='text/css' media='all' />
 </body>
 </html>
