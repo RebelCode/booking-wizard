@@ -97,7 +97,14 @@ export default function (TranslateCapable) {
          *
          * @property {boolean} isCreatingBooking Indicates that component is creating booking now.
          */
-        isCreatingBooking: false
+        isCreatingBooking: false,
+
+        /**
+         * @since [*next-version*]
+         *
+         * @property {string} errorMessage Error message if booking is not created.
+         */
+        errorMessage: null
       }
     },
 
@@ -198,7 +205,18 @@ export default function (TranslateCapable) {
           if (this.config.redirectUrl) {
             this.redirect(this.config.redirectUrl)
           }
-        })
+        }, this.handleBookError)
+      },
+
+      /**
+       * Handler for case when booking was not created.
+       *
+       * @since [*next-version*]
+       */
+      handleBookError (error) {
+        this.isCreatingBooking = false
+        const responseDate = error.response.data
+        this.errorMessage = responseDate.data.errors[0] || responseDate.message
       },
 
       /**
