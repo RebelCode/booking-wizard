@@ -16,4 +16,9 @@ $color: #17a7dd;
     border-color: $color !important;
     color: #fff;
   }
+  .vdp-datepicker__calendar .cell.highlighted {
+    background-color: $color !important;
+    border-color: $color !important;
+    color: #fff;
+  }
 }
