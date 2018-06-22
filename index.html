@@ -28,6 +28,7 @@
                 <session-step v-model="session" :service="service"></session-step>
             </tab-content>
             <tab-content>
+                <h1>{{ notes }}</h1>
                 <confirmation-step v-model="notes" :service="service" :session="session"></confirmation-step>
             </tab-content>
 
@@ -68,6 +69,16 @@
         <p v-html="_('You are booking: <strong>%(service)s</strong> - %(duration)s appointment', appointment)"></p>
         <p v-html="_('Starting at <strong>%(start)s</strong>', appointment)"></p>
         <p v-html="_('The price is of <strong>%(price)s</strong>', appointment)"></p>
+    </div>
+
+    <div class="inline-form-control">
+        <label>{{ _('Additional notes') }}</label>
+        <textarea
+            rows="4"
+            v-model="valueProxy"
+            class="eddb-control"
+            :placeholder="_('Have you got any special requests for the service provider? If yes, please note them down here')"
+        ></textarea>
     </div>
 </div>
 </script>
