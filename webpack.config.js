@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== 'production'
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 let config = {
   mode: debug ? 'development' : 'production',
@@ -11,12 +12,27 @@ let config = {
       template: 'index.html',
       inject: true
     }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ] : [
-    new webpack.optimize.OccurrenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].min.css",
+    })
   ],
   module: {
     rules: [
-      {test: /\.js$/, loader: 'babel-loader'}
+      {test: /\.js$/, loader: 'babel-loader'},
+      {
+        test: /\.scss$/,
+        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      }
     ]
   },
   entry: './src/app.js',

@@ -1,0 +1,47 @@
+.edd-booking-wizard {
+  //font-family: $font-family;
+  //color: $black;
+  //line-height: 1.4;
+  //background-color: white;
+  font-size: $font-size;
+
+  @import 'wizard-header';
+  @import 'wizard-navigation';
+  @import 'wizard-footer';
+
+  @import 'buttons';
+  @import 'form';
+
+  &__info {
+    padding: 1rem;
+    border: 1px solid $dark-gray;
+    text-align: center;
+    margin: 0 0 2rem 0;
+  }
+
+  .wizard-footer-back {
+    margin-right: 8px;
+    background-color: white !important;
+    color: $black !important;
+    border-color: $dark-gray !important;
+  }
+
+  .service {
+    display: flex;
+
+    &__image {
+      text-align: center;
+      width: 35%;
+      padding: .5rem;
+      flex-shrink: 0;
+      img {
+        border-radius: $border-radius;
+      }
+    }
+
+    &__description {
+      padding-bottom: .5rem;
+    }
+  }
+}
+

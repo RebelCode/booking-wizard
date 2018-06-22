@@ -1,0 +1,13 @@
+.wizard-card-footer {
+  border-top: 1px solid $dark-gray;
+  padding: 1rem !important;
+
+  .wizard-footer-left {
+    width: 60%;
+  }
+
+  .wizard-footer-clear {
+    padding-bottom: .75rem;
+    font-weight: bold;
+  }
+}
