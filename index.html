@@ -63,11 +63,11 @@
     </div>
 </script>
 <script type="text/x-template" id="eddbk-confirmation-step-template">
-<div v-if="service">
+<div v-if="service && appointment">
     <div class="service-info">
-        <p>{{ _('You are booking:') }} <strong>{{ service.name }}</strong> - {{ appointment.duration }}</p>
-        <p>{{ _('Starting at') }} <strong>{{ appointment.start }}</strong></p>
-        <p>{{ _('The price is of') }} <strong>{{ appointment.price }}</strong></p>
+        <p v-html="_('You are booking: <strong>%(service)s</strong> - %(duration)s appointment', appointment)"></p>
+        <p v-html="_('Starting at <strong>%(start)s</strong>', appointment)"></p>
+        <p v-html="_('The price is of <strong>%(price)s</strong>', appointment)"></p>
     </div>
 </div>
 </script>
@@ -259,7 +259,8 @@
             'dayFull': 'dddd Do MMMM YYYY',
             'dayShort': 'D MMMM YYYY',
             'monthKey': 'YYYY-MM',
-            'dayKey': 'YYYY-MM-DD'
+            'dayKey': 'YYYY-MM-DD',
+            'appointmentStart': 'h:mm a \o\\n dddd Do MMMM YYYY'
           }
         }
       })

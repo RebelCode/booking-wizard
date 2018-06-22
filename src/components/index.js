@@ -61,7 +61,12 @@ export default function () {
      * @return {object}
      */
     'confirmation-step' (container) {
-      return CfConfirmationStep(container.VModelProxy, container.TranslateCapable)
+      return CfConfirmationStep(
+        container.VModelProxy,
+        container.TranslateCapable,
+        container.CreateDatetimeCapable,
+        container.config.datetime
+      )
     }
   }
 }

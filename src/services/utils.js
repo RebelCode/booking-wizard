@@ -1,4 +1,4 @@
-import humanizeDuration from './humanizeDuration'
+import utils from './../utils'
 
 /**
  * Exposing all utils of application.
@@ -11,6 +11,6 @@ import humanizeDuration from './humanizeDuration'
  */
 export default function (dependencies) {
   return {
-    ...humanizeDuration(dependencies)
+    ...utils(dependencies)
   }
 }

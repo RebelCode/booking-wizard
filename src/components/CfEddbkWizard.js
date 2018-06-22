@@ -22,6 +22,13 @@ export default function (TranslateCapable) {
       /**
        * @since [*next-version*]
        *
+       * @property {Function} nonPluralHumanizeDuration Function for humanizing durations.
+       */
+      nonPluralHumanizeDuration: 'nonPluralHumanizeDuration',
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {VueComponent} `form-wizard` Form wizard component.
        */
       'form-wizard': 'form-wizard',
@@ -132,13 +139,29 @@ export default function (TranslateCapable) {
        * @property {object} serviceInfo Description of selected service.
        */
       serviceInfo () {
+        if (!this._minSession) {
+          return
+        }
+
         return {
           isOtherSessionsAvailable: Object.keys(this.service.sessionLengths).length > 1,
           pricePreview: this._('Starting at %(price)s for a %(duration)s appointment.', {
-            price: 'minSessionPrice', // @todo
-            duration: 'minSessionLengthHumanized' // @todo
+            price: this._minSession.price.formatted,
+            duration: this.nonPluralHumanizeDuration(this._minSession.sessionLength * 1000)
           })
         }
+      },
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {SessionLength} _minSession Min session of given service.
+       */
+      _minSession () {
+        if (!this.service) {
+          return
+        }
+        return this.service.sessionLengths.reduce((p, v) => p.sessionLength < v.sessionLength ? p : v)
       }
     },
 

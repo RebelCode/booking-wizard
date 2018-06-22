@@ -1,8 +1,17 @@
-export default function (VModelProxy, TranslateCapable) {
+export default function (VModelProxy, TranslateCapable, CreateDatetimeCapable, dateFormats) {
   return {
     template: '#eddbk-confirmation-step-template',
 
-    mixins: [ VModelProxy, TranslateCapable ],
+    mixins: [ VModelProxy, TranslateCapable, CreateDatetimeCapable ],
+
+    inject: {
+      /**
+       * @since [*next-version*]
+       *
+       * @property {Function} nonPluralHumanizeDuration Function for humanizing durations.
+       */
+      nonPluralHumanizeDuration: 'nonPluralHumanizeDuration'
+    },
 
     props: {
       /**
@@ -34,11 +43,27 @@ export default function (VModelProxy, TranslateCapable) {
        * @property {object} appointment Summary information for appointment.
        */
       appointment () {
-        return {
-          price: 'PRICE', // @todo
-          start: 'START TIME', // @todo
-          duration: 'DURATION' // @todo
+        if (!this._selectedSessionDuration) {
+          return
         }
+        return {
+          service: this.service.name,
+          price: this._selectedSessionDuration.price.formatted,
+          start: this.createLocalDatetime(this.session.start).format(dateFormats.appointmentStart),
+          duration: this.nonPluralHumanizeDuration(this.session.duration * 1000)
+        }
+      },
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {SessionLength} _selectedSessionDuration Selected session length information.
+       */
+      _selectedSessionDuration () {
+        if (!this.session) {
+          return
+        }
+        return this.service.sessionLengths.find(sessionLength => sessionLength.sessionLength === this.session.duration)
       }
     }
   }
