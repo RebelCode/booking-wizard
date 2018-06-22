@@ -247,7 +247,7 @@ export default function (TranslateCapable) {
        * @since [*next-version*]
        */
       redirect (url) {
-        alert('redirect to', url)
+        window.location.href = url
       },
 
       /**
