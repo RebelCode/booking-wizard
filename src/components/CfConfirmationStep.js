@@ -31,6 +31,15 @@ export default function (VModelProxy, TranslateCapable, CreateDatetimeCapable, d
       /**
        * @since [*next-version*]
        *
+       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
+       */
+      timezone: {
+        default: null
+      },
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {string} value Booking confirmation notes, model for current component.
        */
       value: {},

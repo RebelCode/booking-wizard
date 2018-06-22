@@ -95,6 +95,13 @@ export default function (TranslateCapable) {
         /**
          * @since [*next-version*]
          *
+         * @property {string|null} timezone Name of timezone in which sessions will be displayed.
+         */
+        timezone: this.moment.tz.guess(),
+
+        /**
+         * @since [*next-version*]
+         *
          * @property {boolean} isCreatingBooking Indicates that component is creating booking now.
          */
         isCreatingBooking: false,
