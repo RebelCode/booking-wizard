@@ -22,7 +22,7 @@ export default function (dependencies) {
      * @return {object}
      */
     bookingsApi (container) {
-      return bookingsApi(container.config.bookingsResourceUrl, container.httpClient)
+      return bookingsApi(container.config.bookingsResourceUrl, container.httpClient, container.config.initialBookingTransition)
     },
 
     /**

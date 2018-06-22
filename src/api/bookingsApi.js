@@ -5,10 +5,11 @@
  *
  * @param {string} resourceUrl URL of bookings resource.
  * @param {HttpClient} httpClient Promise-based http client.
+ * @param {string} initialTransition Name of initial transition for bookings.
  *
  * @return {object} Map of pure API functions for bookings.
  */
-export default function (resourceUrl, httpClient) {
+export default function (resourceUrl, httpClient, initialTransition) {
   return {
     /**
      * Create booking.
@@ -28,6 +29,7 @@ export default function (resourceUrl, httpClient) {
         end: session.end,
         service: service.id,
         resource: session.resource,
+        transition: initialTransition,
         notes: notes,
         clientTz: timezone,
       })
