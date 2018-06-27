@@ -137,15 +137,21 @@
         </div>
         <div class="inline-form-control" v-if="!isDailyDuration">
             <label>{{ 'Select available time' }}</label>
-            <session-time-picker v-model="session"
-                                 :selected-day.sync="selectedDay"
-                                 :selected-session-length="sessionDuration"
-                                 :service="service"
-                                 :timezone="timezone"
-                                 :sessions="selectedDaySessions"
-                                 :prev-available-day="prevAvailableDay"
-                                 :next-available-day="nextAvailableDay"
-            ></session-time-picker>
+            <div class="eddb-control eddb-control-appointment">
+                <date-navigator
+                        :selected-day.sync="selectedDay"
+                        :timezone="timezone"
+                        :prev-available-day="prevAvailableDay"
+                        :next-available-day="nextAvailableDay"
+                ></date-navigator>
+                <session-time-picker v-model="session"
+                                     :selected-day.sync="selectedDay"
+                                     :selected-session-length="sessionDuration"
+                                     :service="service"
+                                     :timezone="timezone"
+                                     :sessions="selectedDaySessions"
+                ></session-time-picker>
+            </div>
         </div>
     </div>
 </script>
@@ -162,22 +168,22 @@
         ></datepicker>
     </div>
 </script>
+<script type="text/x-template" id="date-navigator-template">
+    <div class="eddb-control-appointment__header">
+        <span><button @click="goToPrevDay" :disabled="!!prevAvailableDay">&#9664;</button></span>
+        <span>{{ selectedDaySessionsLabel }}</span>
+        <span><button @click="goToNextDay" :disabled="!!nextAvailableDay">&#9654;</button></span>
+    </div>
+</script>
 <script type="text/x-template" id="session-time-picker-template">
-    <div class="eddb-control eddb-control-appointment">
-        <div class="eddb-control-appointment__header">
-            <span><button @click="goToPrevDay" :disabled="!!prevAvailableDay">&#9664;</button></span>
-            <span>{{ selectedDaySessionsLabel }}</span>
-            <span><button @click="goToNextDay" :disabled="!!nextAvailableDay">&#9654;</button></span>
-        </div>
-        <div class="eddb-control-appointment__body">
-            <div
-                    :class="{'selected': isSelected(session) }"
-                    v-for="session in visibleSessions"
-                    @click="select(session)"
-                    class="session__item"
-            >
-                {{ sessionLabel(session) }}
-            </div>
+    <div class="eddb-control-appointment__body">
+        <div
+                :class="{'selected': isSelected(session) }"
+                v-for="session in visibleSessions"
+                @click="select(session)"
+                class="session__item"
+        >
+            {{ sessionLabel(session) }}
         </div>
     </div>
 </script>
@@ -201,7 +207,7 @@
         bottle: 'https://cdnjs.cloudflare.com/ajax/libs/bottlejs/1.6.1/bottle.min',
         vue: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.4/vue',
         vuex: 'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min',
-        bookingWizardComponents: '/dist/js/bwc.min',
+        bookingWizardComponents: 'https://unpkg.com/@rebelcode/booking-wizard-components@0.1.4/dist/lib.min',
         formWizard: 'https://unpkg.com/vue-form-wizard/dist/vue-form-wizard',
         axios: 'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min',
         humanizeDuration: 'https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.14.0/humanize-duration.min',

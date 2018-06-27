@@ -75,6 +75,22 @@ export default function (dependencies) {
     },
 
     /**
+     * Component for switching between near dates in calendar.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    'date-navigator' (container) {
+      return dependencies.bookingWizardComponents.CfDateNavigator(
+        container.CreateDatetimeCapable,
+        container.config.datetime
+      )
+    },
+
+    /**
      * Datepicker component.
      *
      * @since [*next-version*]
