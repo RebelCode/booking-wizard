@@ -1,8 +1,8 @@
-export default function (VModelProxy, TranslateCapable) {
+export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable) {
   return {
     template: '#eddbk-service-step-template',
 
-    mixins: [ VModelProxy, TranslateCapable ],
+    mixins: [ VModelProxy, TranslateCapable, MapBookingFieldsCapable ],
 
     inject: {
       /**
@@ -62,7 +62,7 @@ export default function (VModelProxy, TranslateCapable) {
        */
       loadServices () {
         this.isLoading = true
-        return this.servicesApi.fetch().then(services => {
+        return this.servicesApi.select().then(services => {
           this.services = services
           this.isLoading = false
         })

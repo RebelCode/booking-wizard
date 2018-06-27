@@ -1,5 +1,6 @@
 import VModelProxy from './VModelProxy'
 import TranslateCapable from './TranslateCapable'
+import MapBookingFieldsCapable from './MapBookingFieldsCapable'
 
 /**
  * Creates mixins definitions.
@@ -32,6 +33,19 @@ export default function (dependencies) {
      */
     TranslateCapable () {
       return TranslateCapable()
+    },
+
+    /**
+     * Mixin that adds computed properties of booking app store.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    MapBookingFieldsCapable (container) {
+      return MapBookingFieldsCapable(container.mapStore, container.config.bookingDataMap)
     }
   }
 }

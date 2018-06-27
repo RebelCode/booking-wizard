@@ -1,8 +1,8 @@
-export default function (VModelProxy, TranslateCapable) {
+export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable) {
   return {
     template: '#eddbk-session-step-template',
 
-    mixins: [ VModelProxy, TranslateCapable ],
+    mixins: [ VModelProxy, TranslateCapable, MapBookingFieldsCapable ],
 
     inject: {
       /**

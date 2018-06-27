@@ -23,6 +23,22 @@ export default function (dependencies) {
     },
 
     /**
+     * Vuex.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {Vuex}
+     */
+    vuex (container) {
+      let Vue = container.vue,
+        Vuex = dependencies.vuex
+      Vue.use(Vuex)
+      return Vuex
+    },
+
+    /**
      * Http client.
      *
      * @since [*next-version*]

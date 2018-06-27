@@ -1,8 +1,10 @@
-export default function (TranslateCapable) {
+export default function (store, bookingDataMap, TranslateCapable, MapBookingFieldsCapable) {
   return {
     template: '#eddbk-wizard-template',
 
-    mixins: [ TranslateCapable ],
+    mixins: [ TranslateCapable, MapBookingFieldsCapable ],
+
+    store,
 
     inject: {
       /**
@@ -88,13 +90,6 @@ export default function (TranslateCapable) {
         /**
          * @since [*next-version*]
          *
-         * @property {string|null} notes Additional notes that should be passed with booking.
-         */
-        notes: null,
-
-        /**
-         * @since [*next-version*]
-         *
          * @property {string|null} timezone Name of timezone in which sessions will be displayed.
          */
         timezone: this.moment.tz.guess(),
@@ -176,6 +171,15 @@ export default function (TranslateCapable) {
           return
         }
         return this.service.sessionLengths.reduce((p, v) => p.sessionLength < v.sessionLength ? p : v)
+      },
+
+      /**
+       * @since [*next-version*]
+       *
+       * @return {object} Booking fields from state.
+       */
+      bookingState () {
+        return this.$store.state.booking
       }
     },
 
@@ -189,6 +193,8 @@ export default function (TranslateCapable) {
       if (this.config.service) {
         this.service = this.config.service
       }
+
+      this._hydrateStore()
     },
 
     methods: {
@@ -202,15 +208,14 @@ export default function (TranslateCapable) {
        */
       createBooking () {
         this.isCreatingBooking = true
-        return this.bookingsApi.create({
+        return this.bookingsApi.create(Object.assign({}, {
           start: this.session.start,
           end: this.session.end,
           service: this.service.id,
           resource: this.session.resource,
           transition: this.initialTransition,
-          notes: this.notes,
           clientTz: this.getBrowserTimezone(),
-        }).then(() => {
+        }, this.bookingState)).then(() => {
           this.isCreatingBooking = false
           if (this.config.redirectUrl) {
             this.redirect(this.config.redirectUrl)
@@ -269,7 +274,21 @@ export default function (TranslateCapable) {
        */
       getBrowserTimezone () {
         return this.moment.tz.guess()
-      }
+      },
+
+      /**
+       * Hydrates application store.
+       *
+       * @since [*next-version*]
+       */
+      _hydrateStore () {
+        this.$store.replaceState(Object.assign({}, this.$store.state, {
+          booking: Object.keys(bookingDataMap).reduce((obj, key) => {
+            obj[key] = null;
+            return obj;
+          }, {})
+        }))
+      },
     },
 
     components: {

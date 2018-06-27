@@ -70,7 +70,7 @@
         <label>{{ _('Additional notes') }}</label>
         <textarea
             rows="4"
-            v-model="valueProxy"
+            v-model="notes"
             class="eddb-control"
             :placeholder="_('Have you got any special requests for the service provider? If yes, please note them down here')"
         ></textarea>
@@ -200,6 +200,7 @@
         stdLib: 'https://unpkg.com/@rebelcode/std-lib@0.1.4/dist/std-lib.umd',
         bottle: 'https://cdnjs.cloudflare.com/ajax/libs/bottlejs/1.6.1/bottle.min',
         vue: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.4/vue',
+        vuex: 'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min',
         bookingWizardComponents: '/dist/js/bwc.min',
         formWizard: 'https://unpkg.com/vue-form-wizard/dist/vue-form-wizard',
         axios: 'https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min',
@@ -214,7 +215,7 @@
       }
     })
 
-    var dependenciesList = ['formWizard', 'textFormatter', 'bookingWizard', 'bookingWizardComponents', 'uiFramework', 'bottle', 'vue', 'axios', 'humanizeDuration', 'cjs!datepicker',
+    var dependenciesList = ['formWizard', 'textFormatter', 'bookingWizard', 'bookingWizardComponents', 'uiFramework', 'bottle', 'vue', 'vuex', 'axios', 'humanizeDuration', 'cjs!datepicker',
       'moment', 'momentTimezone', 'lodash', 'cjs!momentRange', 'stdLib']
 
     function defineServices (di, dependencies) {
@@ -247,6 +248,9 @@
             'monthKey': 'YYYY-MM',
             'dayKey': 'YYYY-MM-DD',
             'appointmentStart': 'h:mm a \o\\n dddd Do MMMM YYYY'
+          },
+          bookingDataMap: {
+            notes: 'notes'
           }
         }
       })

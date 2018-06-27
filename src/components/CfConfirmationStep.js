@@ -1,8 +1,8 @@
-export default function (VModelProxy, TranslateCapable, CreateDatetimeCapable, dateFormats) {
+export default function (TranslateCapable, CreateDatetimeCapable, MapBookingFieldsCapable, dateFormats) {
   return {
     template: '#eddbk-confirmation-step-template',
 
-    mixins: [ VModelProxy, TranslateCapable, CreateDatetimeCapable ],
+    mixins: [ TranslateCapable, CreateDatetimeCapable, MapBookingFieldsCapable ],
 
     inject: {
       /**
@@ -35,14 +35,7 @@ export default function (VModelProxy, TranslateCapable, CreateDatetimeCapable, d
        */
       timezone: {
         default: null
-      },
-
-      /**
-       * @since [*next-version*]
-       *
-       * @property {string} value Booking confirmation notes, model for current component.
-       */
-      value: {},
+      }
     },
 
     computed: {

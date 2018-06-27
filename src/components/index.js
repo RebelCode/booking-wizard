@@ -22,7 +22,13 @@ export default function () {
      * @return {object}
      */
     'eddbk-wizard' (container) {
-      return CfEddbkWizard(container.TranslateCapable)
+      console.info('container.config.bookingDataMap', container.config.bookingDataMap)
+      return CfEddbkWizard(
+        container.store,
+        container.config.bookingDataMap,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
     },
 
     /**
@@ -35,7 +41,11 @@ export default function () {
      * @return {object}
      */
     'service-step' (container) {
-      return CfServiceStep(container.VModelProxy, container.TranslateCapable)
+      return CfServiceStep(
+        container.VModelProxy,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
     },
 
     /**
@@ -48,7 +58,11 @@ export default function () {
      * @return {object}
      */
     'session-step' (container) {
-      return CfSessionStep(container.VModelProxy, container.TranslateCapable)
+      return CfSessionStep(
+        container.VModelProxy,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
     },
 
     /**
@@ -62,9 +76,9 @@ export default function () {
      */
     'confirmation-step' (container) {
       return CfConfirmationStep(
-        container.VModelProxy,
         container.TranslateCapable,
         container.CreateDatetimeCapable,
+        container.MapBookingFieldsCapable,
         container.config.datetime
       )
     }
