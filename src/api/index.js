@@ -1,5 +1,5 @@
-import bookingsApi from './bookingsApi'
-import servicesApi from './servicesApi'
+import BookingsApi from './BookingsApi'
+import ServicesApi from './ServicesApi'
 
 /**
  * Creates api services definitions.
@@ -19,10 +19,10 @@ export default function (dependencies) {
      *
      * @param {Container} container DI Container.
      *
-     * @return {object}
+     * @return {CreateAble}
      */
     bookingsApi (container) {
-      return bookingsApi(container.config.bookingsResourceUrl, container.httpClient, container.config.initialBookingTransition)
+      return new BookingsApi(container.config.bookingsResourceUrl, container.httpClient, container.config.initialBookingTransition)
     },
 
     /**
@@ -32,10 +32,10 @@ export default function (dependencies) {
      *
      * @param {Container} container DI Container.
      *
-     * @return {object}
+     * @return {SelectAble}
      */
     servicesApi (container) {
-      return servicesApi(container.config.servicesResourceUrl, container.httpClient)
+      return new ServicesApi(container.config.servicesResourceUrl, container.httpClient)
     }
   }
 }

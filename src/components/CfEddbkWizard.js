@@ -203,10 +203,13 @@ export default function (TranslateCapable) {
       createBooking () {
         this.isCreatingBooking = true
         return this.bookingsApi.create({
-          service: this.service,
-          session: this.session,
+          start: this.session.start,
+          end: this.session.end,
+          service: this.service.id,
+          resource: this.session.resource,
+          transition: this.initialTransition,
           notes: this.notes,
-          timezone: this.getBrowserTimezone()
+          clientTz: this.getBrowserTimezone(),
         }).then(() => {
           this.isCreatingBooking = false
           if (this.config.redirectUrl) {
