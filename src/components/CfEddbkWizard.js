@@ -17,9 +17,9 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {object} config The configuration of the application.
+       * @property {object} configuration The configuration of the application.
        */
-      config: 'config',
+      configuration: 'config',
 
       /**
        * @since [*next-version*]
@@ -220,7 +220,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           end: this.session.end,
           service: this.service.id,
           resource: this.session.resource,
-          transition: this.config.initialBookingTransition,
+          transition: this.configuration.initialBookingTransition,
           clientTz: this.getBrowserTimezone(),
         }, this.bookingState)).then(() => {
           this.isCreatingBooking = false
