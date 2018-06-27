@@ -22,7 +22,6 @@ export default function () {
      * @return {object}
      */
     'eddbk-wizard' (container) {
-      console.info('container.config.bookingDataMap', container.config.bookingDataMap)
       return CfEddbkWizard(
         container.store,
         container.config.bookingDataMap,

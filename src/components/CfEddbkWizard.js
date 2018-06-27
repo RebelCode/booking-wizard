@@ -10,9 +10,16 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {{create: Function}} bookingsApi API wrapper for creating bookings.
+       * @property {CreateCapable} bookingsApi API wrapper for creating bookings.
        */
       bookingsApi: 'bookingsApi',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} config The configuration of the application.
+       */
+      config: 'config',
 
       /**
        * @since [*next-version*]
@@ -213,7 +220,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           end: this.session.end,
           service: this.service.id,
           resource: this.session.resource,
-          transition: this.initialTransition,
+          transition: this.config.initialBookingTransition,
           clientTz: this.getBrowserTimezone(),
         }, this.bookingState)).then(() => {
           this.isCreatingBooking = false
