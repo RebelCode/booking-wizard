@@ -152,18 +152,18 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {object} serviceInfo Description of selected service.
+       * @property {{isOtherSessionsAvailable: bool, pricePreview: {price: string, duration: string}}} serviceInfo Description of selected service.
        */
       serviceInfo () {
-        if (!this._minSession) {
+        if (!this._minSessionLength) {
           return
         }
 
         return {
           isOtherSessionsAvailable: Object.keys(this.service.sessionLengths).length > 1,
           pricePreview: this._('Starting at %(price)s for a %(duration)s appointment.', {
-            price: this._minSession.price.formatted,
-            duration: this.nonPluralHumanizeDuration(this._minSession.sessionLength * 1000)
+            price: this._minSessionLength.price.formatted,
+            duration: this.nonPluralHumanizeDuration(this._minSessionLength.sessionLength * 1000)
           })
         }
       },
@@ -171,9 +171,9 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {SessionLength} _minSession Min session of given service.
+       * @property {SessionLength} _minSessionLength Min session of given service.
        */
-      _minSession () {
+      _minSessionLength () {
         if (!this.service) {
           return
         }
@@ -237,8 +237,8 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        */
       handleBookError (error) {
         this.isCreatingBooking = false
-        const responseDate = error.response.data
-        this.errorMessage = responseDate.data.errors[0] || responseDate.message
+        const responseData = error.response.data
+        this.errorMessage = responseData.data.errors[0] || responseData.message
       },
 
       /**
@@ -248,7 +248,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        *
        * @return {boolean} Can user switch from service tab.
        */
-      canSwitchFromServiceTab () {
+      isServiceStepReady () {
         return !!this.service
       },
 
@@ -259,7 +259,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        *
        * @return {boolean} Can user switch from session selection tab.
        */
-      canSwitchFromSessionTab () {
+      isSessionStepReady () {
         return !!this.session
       },
 

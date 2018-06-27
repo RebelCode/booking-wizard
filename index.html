@@ -17,10 +17,10 @@
                      :finishButtonText="_('Finish')"
                      color="#17a7dd"
         >
-            <tab-content :before-change="canSwitchFromServiceTab" v-if="!config.service">
+            <tab-content :before-change="isServiceStepReady" v-if="!config.service">
                 <service-step v-model="service"></service-step>
             </tab-content>
-            <tab-content :before-change="canSwitchFromSessionTab">
+            <tab-content :before-change="isSessionStepReady">
                 <session-step v-model="session" :timezone="timezone" :service="service"></session-step>
             </tab-content>
             <tab-content>
