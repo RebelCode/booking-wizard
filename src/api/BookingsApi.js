@@ -29,6 +29,10 @@ export default class BookingsApi {
    * @return {Promise<any>} Booking creation promise.
    */
   create (data) {
-    return this.httpClient.post(this.resourceUrl, data)
+    return this.httpClient.request({
+      url: this.resourceUrl,
+      method: 'post',
+      data
+    })
   }
 }

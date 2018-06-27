@@ -27,9 +27,12 @@ export default class ServicesApi {
    * @return {Promise<any>} Selecting services promise.
    */
   select (params = {}) {
-    return this.httpClient.get(this.resourceUrl, { params })
-      .then(response => {
-        return response.data.items
-      })
+    return this.httpClient.request({
+      url: this.resourceUrl,
+      method: 'get',
+      params
+    }).then(response => {
+      return response.data.items
+    })
   }
 }

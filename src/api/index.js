@@ -19,7 +19,7 @@ export default function (dependencies) {
      *
      * @param {Container} container DI Container.
      *
-     * @return {CreateAble}
+     * @return {CreateCapable}
      */
     bookingsApi (container) {
       return new BookingsApi(container.config.bookingsResourceUrl, container.httpClient, container.config.initialBookingTransition)
@@ -32,7 +32,7 @@ export default function (dependencies) {
      *
      * @param {Container} container DI Container.
      *
-     * @return {SelectAble}
+     * @return {SelectCapable}
      */
     servicesApi (container) {
       return new ServicesApi(container.config.servicesResourceUrl, container.httpClient)
