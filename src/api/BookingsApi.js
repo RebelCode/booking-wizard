@@ -2,6 +2,8 @@
  * Bookings API.
  *
  * @since [*next-version*]
+ *
+ * @implements {CreateCapable}
  */
 export default class BookingsApi {
   /**

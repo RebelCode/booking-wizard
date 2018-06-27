@@ -2,6 +2,8 @@
  * Services API.
  *
  * @since [*next-version*]
+ *
+ * @implements {SelectCapable}
  */
 export default class ServicesApi {
   /**

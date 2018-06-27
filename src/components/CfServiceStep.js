@@ -8,7 +8,7 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
       /**
        * @since [*next-version*]
        *
-       * @property {{fetch: Function}} servicesApi API wrapper for fetching services list.
+       * @property {SelectCapable} servicesApi API wrapper for selecting services list.
        */
       servicesApi: 'servicesApi'
     },
