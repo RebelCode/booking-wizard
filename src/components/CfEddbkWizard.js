@@ -152,7 +152,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {{isOtherSessionsAvailable: bool, pricePreview: {price: string, duration: string}}} serviceInfo Description of selected service.
+       * @property {{isOtherSessionsAvailable: bool, pricePreview: string}} serviceInfo Description of selected service.
        */
       serviceInfo () {
         if (!this._minSessionLength) {
