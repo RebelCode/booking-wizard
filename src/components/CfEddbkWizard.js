@@ -283,6 +283,8 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        * Set application's store structure according configuration. This is
        * required because Vuex works with defined state structure.
        *
+       * Store state structure is defined in the `bookingDataMap` var.
+       *
        * @since [*next-version*]
        */
       _hydrateStore () {
