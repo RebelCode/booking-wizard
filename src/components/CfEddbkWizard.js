@@ -38,6 +38,13 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
+       * @property {Function} handleBookSuccess Function for handling successful booking creation response.
+       */
+      handleBookSuccess: 'handleBookSuccess',
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {VueComponent} `form-wizard` Form wizard component.
        */
       'form-wizard': 'form-wizard',
@@ -222,11 +229,9 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           resource: this.session.resource,
           transition: this.configuration.initialBookingTransition,
           clientTz: this.getBrowserTimezone(),
-        }, this.bookingState)).then(() => {
+        }, this.bookingState)).then((response) => {
           this.isCreatingBooking = false
-          if (this.config.redirectUrl) {
-            this.redirect(this.config.redirectUrl)
-          }
+          this.handleBookSuccess(response)
         }, this.handleBookError)
       },
 
@@ -261,15 +266,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        */
       isSessionStepReady () {
         return !!this.session
-      },
-
-      /**
-       * Redirect user to some location.
-       *
-       * @since [*next-version*]
-       */
-      redirect (url) {
-        window.location.href = url
       },
 
       /**
