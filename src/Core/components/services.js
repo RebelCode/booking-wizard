@@ -1,4 +1,7 @@
-import components from './../components'
+import CfServiceStep from './CfServiceStep'
+import CfConfirmationStep from './CfConfirmationStep'
+import CfEddbkWizard from './CfEddbkWizard'
+import CfSessionStep from './CfSessionStep'
 
 /**
  * Components definitions.
@@ -10,9 +13,74 @@ import components from './../components'
 export default function (dependencies) {
   const appComponents = {
     /**
-     * List of app components.
+     * Main EDDBK wizard component.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
      */
-    ...components(dependencies),
+    'eddbk-wizard' (container) {
+      return CfEddbkWizard(
+        container.store,
+        container.config.bookingDataMap,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
+    },
+
+    /**
+     * Component for selecting service in wizard.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    'service-step' (container) {
+      return CfServiceStep(
+        container.VModelProxy,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
+    },
+
+    /**
+     * Component for selecting session in wizard.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    'session-step' (container) {
+      return CfSessionStep(
+        container.VModelProxy,
+        container.TranslateCapable,
+        container.MapBookingFieldsCapable,
+      )
+    },
+
+    /**
+     * Confirmation step component in wizard.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    'confirmation-step' (container) {
+      return CfConfirmationStep(
+        container.TranslateCapable,
+        container.CreateDatetimeCapable,
+        container.MapBookingFieldsCapable,
+        container.config.datetime
+      )
+    },
 
     /**
      * Component for selecting session for service.

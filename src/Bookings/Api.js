@@ -5,7 +5,7 @@
  *
  * @implements {CreateCapable}
  */
-export default class BookingsApi {
+export default class Api {
   /**
    * BookingsApi constructor.
    *

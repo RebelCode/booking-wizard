@@ -1,20 +1,17 @@
-import booking from './modules/booking'
-
 /**
  * Main application's store object factory function.
  *
  * @since [*next-version*]
  *
+ * @param {object} modules List of vuex modules of app.
  * @param {Function} deepHas Check that object has nested key.
  * @param {Function} deepSet Set value using nested key.
  *
  * @return {object} Store object.
  */
-export default function (deepHas, deepSet) {
+export default function (modules, {deepHas, deepSet}) {
   return {
-    modules: {
-      booking
-    },
+    modules,
     mutations: {
       /**
        * Deep set value of state.

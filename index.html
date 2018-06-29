@@ -226,7 +226,7 @@
 
     function defineServices (di, dependencies) {
       console.info(dependencies)
-      var serviceList = dependencies.bookingWizard.services(dependencies, document)
+      var serviceList = dependencies.bookingWizard.makeServices(dependencies, document)
       for (var i = 0; i < Object.keys(serviceList).length; i++) {
         var serviceName = Object.keys(serviceList)[i]
         di.factory(serviceName, serviceList[serviceName])

@@ -35,7 +35,7 @@ let config = {
       }
     ]
   },
-  entry: './src/app.js',
+  entry: './src/index.js',
   output: {
     path: __dirname + '/dist/js',
     filename: 'app.min.js',

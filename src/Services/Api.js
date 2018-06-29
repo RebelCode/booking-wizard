@@ -3,9 +3,11 @@
  *
  * @since [*next-version*]
  *
+ * @memberOf Services
+ *
  * @implements {SelectCapable}
  */
-export default class ServicesApi {
+export default class Api {
   /**
    * ServicesApi constructor.
    *

@@ -1,14 +1,15 @@
-/**
- * Creates libs definitions.
- *
- * @since [*next-version*]
- *
- * @param {object} dependencies List of dependencies.
- *
- * @return {object} List of libs definitions.
- */
+import { Components } from './components'
+import { Mixins } from './mixins'
+import { Store } from './store'
+import { Utils } from './utils'
+
 export default function (dependencies) {
   return {
+    ...Components.makeServices(dependencies),
+    ...Mixins.makeServices(dependencies),
+    ...Store.makeServices(dependencies),
+    ...Utils.makeServices(dependencies),
+
     /**
      * The VueJS constructor.
      *
@@ -122,6 +123,26 @@ export default function (dependencies) {
      */
     rangeCache (container) {
       return new dependencies.bookingWizardComponents.RangeCache(container.moment, container.differenceWith, container.isEqual)
+    },
+
+    /**
+     * Sessions API.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {SessionApi}
+     */
+    sessionApi (container) {
+      return new dependencies.bookingWizardComponents.SessionApi(
+        container.httpClient,
+        container.config.endpoints.sessions,
+        container.requestCache,
+        container.rangeCache,
+        container.sessionReadTransformer,
+        container.moment
+      )
     },
 
     /**

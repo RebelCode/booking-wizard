@@ -46,6 +46,19 @@ export default function (dependencies) {
      */
     MapBookingFieldsCapable (container) {
       return MapBookingFieldsCapable(container.mapStore, container.config.bookingDataMap)
+    },
+
+    /**
+     * Mixin for providing datetime creation functions in components.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    CreateDatetimeCapable (container) {
+      return dependencies.bookingWizardComponents.MfCreateDatetimeCapable(container.moment)
     }
   }
 }
