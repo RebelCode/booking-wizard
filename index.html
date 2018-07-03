@@ -169,7 +169,7 @@
 </script>
 <script type="text/x-template" id="date-navigator-template">
     <div class="eddb-control-appointment__header">
-        <span class="eddbk-nav-button eddbk-nav-button__prev" @click="goToPrevDay" :class="!prevAvailableDay ? 'disable' : ''"></span>
+        <span class="eddbk-nav-button eddbk-nav-button__prev" @click="goToPrevDay" :class="!prevAvailableDay ? 'disabled' : ''"></span>
         <span>{{ selectedDaySessionsLabel }}</span>
         <span class="eddbk-nav-button eddbk-nav-button__next" @click="goToNextDay" :class="!nextAvailableDay ? 'disabled' : ''"></span>
     </div>
