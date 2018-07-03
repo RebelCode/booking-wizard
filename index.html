@@ -139,7 +139,7 @@
         </div>
         <div class="inline-form-control" v-if="!isDailyDuration">
             <label>{{ 'Select available time' }}</label>
-            <div class="eddb-control eddb-control-appointment">
+            <div class="eddb-control eddb-control-appointment" v-if="selectedDay">
                 <date-navigator
                         :selected-day.sync="selectedDay"
                         :timezone="timezone"
@@ -153,6 +153,9 @@
                                      :timezone="timezone"
                                      :sessions="selectedDaySessions"
                 ></session-time-picker>
+            </div>
+            <div class="eddb-control-info" v-else>
+                {{ 'Select a date to pick a time from.' }}
             </div>
         </div>
     </div>

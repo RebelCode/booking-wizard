@@ -12,6 +12,11 @@
   //border-radius: $border-radius;
 
   padding: .5rem;
+
+  &-info {
+    padding: 10px 0;
+    opacity: .5;
+  }
 }
 
 .inline-form-control {
