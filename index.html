@@ -158,7 +158,7 @@
     </div>
 </script>
 <script type="text/x-template" id="session-date-picker-template">
-    <div>
+    <div :class="loading ? 'eddbk-disabled' : ''">
         <datepicker v-model="selectedDayProxy"
                     :inline="true"
                     @changedMonth="onMonthChange"
