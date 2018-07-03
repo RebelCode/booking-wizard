@@ -24,7 +24,6 @@
                 <session-step v-model="session" :timezone="timezone" :service="service"></session-step>
             </tab-content>
             <tab-content>
-                <h1>{{ notes }}</h1>
                 <confirmation-step v-model="notes" :timezone="timezone" :service="service" :session="session"></confirmation-step>
             </tab-content>
 
@@ -72,7 +71,7 @@
             rows="4"
             v-model="notes"
             class="eddb-control"
-            :placeholder="_('Have you got any special requests for the service provider? If yes, please note them down here')"
+            :placeholder="_('If you have you got any special requests for this service, please note them down here.')"
         ></textarea>
     </div>
 </div>
@@ -80,7 +79,7 @@
 <script type="text/x-template" id="eddbk-session-step-template">
 <div v-if="service">
     <div class="edd-booking-wizard__info">
-        {{ _('You are booking a ') }} <strong>{{ service.name }}</strong>
+        {{ _('You are booking: ') }} <strong>{{ service.name }}</strong>
     </div>
     <service-session-selector :service="service" :timezone="timezone" v-model="valueProxy"></service-session-selector>
 </div>
@@ -170,9 +169,9 @@
 </script>
 <script type="text/x-template" id="date-navigator-template">
     <div class="eddb-control-appointment__header">
-        <span><button @click="goToPrevDay" :disabled="!!prevAvailableDay">&#9664;</button></span>
+        <span class="eddbk-nav-button eddbk-nav-button__prev" @click="goToPrevDay" :class="!prevAvailableDay ? 'disable' : ''"></span>
         <span>{{ selectedDaySessionsLabel }}</span>
-        <span><button @click="goToNextDay" :disabled="!!nextAvailableDay">&#9654;</button></span>
+        <span class="eddbk-nav-button eddbk-nav-button__next" @click="goToNextDay" :class="!nextAvailableDay ? 'disabled' : ''"></span>
     </div>
 </script>
 <script type="text/x-template" id="session-time-picker-template">
@@ -250,7 +249,7 @@
             'store': 'YYYY-MM-DDTHH:mm:ssZ',
             'sessionTime': 'h:mm a',
             'dayFull': 'dddd Do MMMM YYYY',
-            'dayShort': 'D MMMM YYYY',
+            'dayShort': 'dddd Do MMMM',
             'monthKey': 'YYYY-MM',
             'dayKey': 'YYYY-MM-DD',
             'appointmentStart': 'h:mm a \o\\n dddd Do MMMM YYYY'
