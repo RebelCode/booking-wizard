@@ -51,7 +51,10 @@
                                    :class="['wizard-footer-right', isLastStep ? 'finish-button' : '']"
                                    :style="fillButtonStyle"
                                    :disabled="isCreatingBooking ? 'disabled' : false"
-                    >{{ isLastStep ? _('Book Now') : _('Next') }}</wizard-button>
+                    >
+                        <span v-if="!isCreatingBooking">{{ isLastStep ? _('Book Now') : _('Next') }}</span>
+                        <span class="eddbk-loading-inline eddbk-loading-inline--clean" v-else></span>
+                    </wizard-button>
                 </div>
             </template>
         </form-wizard>

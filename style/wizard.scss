@@ -58,5 +58,11 @@
       color: $darker-gray;
     }
   }
+
+  button {
+    &:hover {
+      opacity: .9;
+    }
+  }
 }
 
