@@ -104,13 +104,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
         /**
          * @since [*next-version*]
          *
-         * @property {string|null} timezone Name of timezone in which sessions will be displayed.
-         */
-        timezone: this.moment.tz.guess(),
-
-        /**
-         * @since [*next-version*]
-         *
          * @property {boolean} isCreatingBooking Indicates that component is creating booking now.
          */
         isCreatingBooking: false,
@@ -173,6 +166,19 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
             this.nonPluralHumanizeDuration(this._minSessionLength.sessionLength * 1000)
           ])
         }
+      },
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
+       */
+      timezone () {
+        const browserTimezone = this.moment.tz.guess()
+        if (!this.service) {
+          return browserTimezone
+        }
+        return this.service.displayOptions.useCustomerTimezone ? browserTimezone : this.service.timezone
       },
 
       /**
