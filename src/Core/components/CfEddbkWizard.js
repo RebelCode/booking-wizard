@@ -45,6 +45,13 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
+       * @property {string} browserTimezone Browser's timezone.
+       */
+      browserTimezone: 'browserTimezone',
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {VueComponent} `form-wizard` Form wizard component.
        */
       'form-wizard': 'form-wizard',
@@ -100,13 +107,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
          * @property {BookingSession|null} session Selected booking session.
          */
         session: null,
-
-        /**
-         * @since [*next-version*]
-         *
-         * @property {string|null} timezone Name of timezone in which sessions will be displayed.
-         */
-        timezone: this.moment.tz.guess(),
 
         /**
          * @since [*next-version*]
@@ -178,6 +178,18 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
+       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
+       */
+      timezone () {
+        if (!this.service) {
+          return this.browserTimezone
+        }
+        return this.service.displayOptions.useCustomerTimezone ? this.browserTimezone : this.service.timezone
+      },
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {SessionLength} _minSessionLength Min session of given service.
        */
       _minSessionLength () {
@@ -228,7 +240,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           service: this.service.id,
           resource: this.session.resource,
           transition: this.configuration.initialBookingTransition,
-          clientTz: this.getBrowserTimezone(),
+          clientTz: this.browserTimezone,
         }, this.bookingState)).then((response) => {
           this.isCreatingBooking = false
           this.handleBookSuccess(response)
@@ -266,17 +278,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        */
       isSessionStepReady () {
         return !!this.session
-      },
-
-      /**
-       * Detect browser timezone.
-       *
-       * @since [*next-version*]
-       *
-       * @return {string} Timezone of user.
-       */
-      getBrowserTimezone () {
-        return this.moment.tz.guess()
       },
 
       /**

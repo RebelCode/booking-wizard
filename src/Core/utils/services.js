@@ -25,6 +25,26 @@ export default function (dependencies) {
      */
     mapStore (container) {
       return makeMapStore(container.lodash.get)
+    },
+
+    /**
+     * Function for creating datetimes in timezone.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {CreateDatetimeFunction}
+     */
+    createDatetime (container) {
+      return (value, timezone = 'UTC') => {
+        const momentFixedTimezoneValue = container.moment.parseZone(value)
+        if (timezone.indexOf('UTC') !== 0) {
+          return container.moment.tz(momentFixedTimezoneValue, timezone)
+        }
+        let offset = Number(timezone.replace(/UTC\+?/g, ''))
+        return momentFixedTimezoneValue.utcOffset(offset)
+      }
     }
   }
 }
