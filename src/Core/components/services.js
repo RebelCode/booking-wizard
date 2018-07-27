@@ -159,6 +159,19 @@ export default function (dependencies) {
     },
 
     /**
+     * Component for selecting timezone.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    'timezone-select' (container) {
+      return dependencies.bookingWizardComponents.CfTimezoneSelect()
+    },
+
+    /**
      * Datepicker component.
      *
      * @since [*next-version*]

@@ -45,13 +45,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
-       * @property {string} browserTimezone Browser's timezone.
-       */
-      browserTimezone: 'browserTimezone',
-
-      /**
-       * @since [*next-version*]
-       *
        * @property {VueComponent} `form-wizard` Form wizard component.
        */
       'form-wizard': 'form-wizard',
@@ -124,6 +117,18 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       }
     },
 
+    watch: {
+      service: {
+        deep: true,
+        immediate: true,
+        handler (newService, oldService) {
+          if (newService && (!oldService || this.timezone === oldService.timezone)) {
+            this.timezone = newService.timezone
+          }
+        }
+      }
+    },
+
     props: {
       /**
        * Configuration for wizard.
@@ -153,6 +158,16 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           }
         }
       },
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {string} color Booking wizard color.
+       */
+      color: {
+        type: String,
+        default: '#17a7dd'
+      }
     },
 
     computed: {
@@ -173,18 +188,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
             this.nonPluralHumanizeDuration(this._minSessionLength.sessionLength * 1000)
           ])
         }
-      },
-
-      /**
-       * @since [*next-version*]
-       *
-       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
-       */
-      timezone () {
-        if (!this.service) {
-          return this.browserTimezone
-        }
-        return this.service.displayOptions.useCustomerTimezone ? this.browserTimezone : this.service.timezone
       },
 
       /**
@@ -240,7 +243,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           service: this.service.id,
           resource: this.session.resource,
           transition: this.configuration.initialBookingTransition,
-          clientTz: this.browserTimezone,
         }, this.bookingState)).then((response) => {
           this.isCreatingBooking = false
           this.handleBookSuccess(response)
@@ -290,7 +292,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        */
       _hydrateStore () {
         this.$store.replaceState(Object.assign({}, this.$store.state, {
-          booking: Object.keys(bookingDataMap).reduce((obj, key) => {
+          booking: Object.values(bookingDataMap).reduce((obj, key) => {
             obj[key] = null;
             return obj;
           }, {})

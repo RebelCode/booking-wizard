@@ -27,15 +27,6 @@ export default function (TranslateCapable, CreateDatetimeCapable, MapBookingFiel
        * @property {BookingSession|null} session Selected booking session.
        */
       session: {},
-
-      /**
-       * @since [*next-version*]
-       *
-       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
-       */
-      timezone: {
-        default: null
-      }
     },
 
     computed: {
