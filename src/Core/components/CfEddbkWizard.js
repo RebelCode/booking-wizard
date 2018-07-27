@@ -157,16 +157,6 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
             redirectUrl: null
           }
         }
-      },
-
-      /**
-       * @since [*next-version*]
-       *
-       * @property {string} color Booking wizard color.
-       */
-      color: {
-        type: String,
-        default: '#17a7dd'
       }
     },
 
