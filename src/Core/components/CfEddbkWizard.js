@@ -121,8 +121,20 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       service: {
         deep: true,
         immediate: true,
+        /**
+         * Watch for service change and use new service's timezone for
+         * new appointment timezone when service is changed.
+         *
+         * @since [*next-version*]
+         *
+         * @param {BookableService|null} newService New selected service
+         * @param {BookableService|null} oldService Previous selected service
+         */
         handler (newService, oldService) {
-          if (newService && (!oldService || this.timezone === oldService.timezone)) {
+          if (!newService) {
+            return
+          }
+          if (!oldService || this.timezone === oldService.timezone) {
             this.timezone = newService.timezone
           }
         }
