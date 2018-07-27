@@ -10,7 +10,14 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
        *
        * @property {object} `service-session-selector` Service session selector component's definition.
        */
-      'service-session-selector': 'service-session-selector'
+      'service-session-selector': 'service-session-selector',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} `timezone-select` Timezone selector component's definition.
+       */
+      'timezone-select': 'timezone-select'
     },
 
     props: {
@@ -26,22 +33,14 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
       /**
        * @since [*next-version*]
        *
-       * @property {string|null} timezone Name of timezone in which sessions will be displayed.
-       */
-      timezone: {
-        default: null
-      },
-
-      /**
-       * @since [*next-version*]
-       *
        * @property {BookingSession} value Selected booking session, model for current component.
        */
       value: {}
     },
 
     components: {
-      'service-session-selector': 'service-session-selector'
+      'service-session-selector': 'service-session-selector',
+      'timezone-select': 'timezone-select'
     }
   }
 }

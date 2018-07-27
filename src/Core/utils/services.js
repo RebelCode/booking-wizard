@@ -37,13 +37,12 @@ export default function (dependencies) {
      * @return {CreateDatetimeFunction}
      */
     createDatetime (container) {
-      return (value, timezone = 'UTC') => {
-        const momentFixedTimezoneValue = container.moment.parseZone(value)
-        if (timezone.indexOf('UTC') !== 0) {
-          return container.moment.tz(momentFixedTimezoneValue, timezone)
+      const createInTimezone = dependencies.stdLib.makeCreateInTimezone(container.moment)
+      return (value, timezone) => {
+        if (!timezone) {
+          timezone = 'UTC'
         }
-        let offset = Number(timezone.replace(/UTC\+?/g, ''))
-        return momentFixedTimezoneValue.utcOffset(offset)
+        return createInTimezone(value, timezone)
       }
     }
   }

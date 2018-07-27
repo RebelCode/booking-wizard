@@ -50,6 +50,7 @@ export default function (deepGet) {
    * @return {*}
    */
   return (namespace, map) => {
+    map = JSON.parse(JSON.stringify(map))
     if (Array.isArray(map)) {
       const _map = {}
       map.forEach((key) => { _map[key] = key })

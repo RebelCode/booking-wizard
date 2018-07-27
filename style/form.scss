@@ -19,6 +19,19 @@
   }
 }
 
+.eddbk-form-control {
+  font-size: $font-size !important;
+  font-family: inherit !important;
+  line-height: inherit !important;
+  border: 1px solid $border-color;
+  padding: .5rem;
+
+  &__info {
+    padding-left: 3px;
+    opacity: .5;
+  }
+}
+
 .inline-form-control {
   display: flex;
   align-items: flex-start;
@@ -35,6 +48,16 @@
 
   & > div {
     width: 62%;
+  }
+
+  &--light {
+    align-items: center;
+    label {
+      font-weight: normal;
+      padding: 0 8px 0 0;
+      text-align: left;
+      margin-bottom: 0;
+    }
   }
 
   .vdp-datepicker__calendar {

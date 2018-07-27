@@ -20,6 +20,14 @@
     text-align: center;
     margin: 0 0 2rem 0;
 
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    hr {
+      background-color: $dark-gray;
+    }
+
     &--inline {
       border-color: $darker-gray;
       margin-bottom: 1rem;
