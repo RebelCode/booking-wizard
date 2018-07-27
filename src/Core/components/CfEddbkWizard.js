@@ -123,7 +123,8 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
         immediate: true,
         /**
          * Watch for service change and use new service's timezone for
-         * new appointment timezone when service is changed.
+         * appointment timezone when service is changed. The timezone will not change
+         * automatically with the service if it was manually selected to be something else.
          *
          * @since [*next-version*]
          *
