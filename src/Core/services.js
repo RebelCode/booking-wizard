@@ -60,7 +60,7 @@ export default function (dependencies) {
     authorizedHttpClient (container) {
       return container.httpClient.create({
         headers: {
-          'X-WP-Nonce': container.state.wp_rest_nonce
+          'X-WP-Nonce': container.state.wpRestNonce
         }
       })
     },
