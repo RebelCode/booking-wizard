@@ -22,7 +22,7 @@ export default function (dependencies) {
      * @return {CreateCapable}
      */
     'bookingsApi' (container) {
-      return new Api(container.config.bookingsResourceUrl, container.httpClient, container.config.initialBookingTransition)
+      return new Api(container.config.bookingsResourceUrl, container.authorizedHttpClient, container.config.initialBookingTransition)
     },
 
     /**

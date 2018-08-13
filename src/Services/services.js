@@ -22,7 +22,7 @@ export default function (dependencies) {
      * @return {SelectCapable}
      */
     servicesApi (container) {
-      return new Api(container.config.servicesResourceUrl, container.httpClient)
+      return new Api(container.config.servicesResourceUrl, container.authorizedHttpClient)
     }
   }
 }
