@@ -51,6 +51,21 @@ export default function (dependencies) {
     },
 
     /**
+     * Instance of authorized HTTP client.
+     *
+     * @since [*next-version*]
+     *
+     * @return {HttpClient}
+     */
+    authorizedHttpClient (container) {
+      return container.httpClient.create({
+        headers: {
+          'X-WP-Nonce': container.state.wpRestNonce
+        }
+      })
+    },
+
+    /**
      * Moment JS.
      *
      * @since [*next-version*]
