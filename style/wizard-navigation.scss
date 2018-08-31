@@ -1,6 +1,9 @@
 .wizard-navigation {
-  .wizard-nav-pills>li>a {
-    box-shadow: none !important;
+  .wizard-nav-pills {
+    margin: 0;
+    & > li > a {
+      box-shadow: none !important;
+    }
   }
 
   .wizard-progress-with-circle {
