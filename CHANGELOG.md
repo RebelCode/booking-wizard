@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Changed
+- API nonce's header name changed to `X-EDDBK-Nonce`.
+
 ## [0.1.3] - 2018-08-31
 ### Fixed
 - Fixed default `ul` margin style on for wizard progress.
