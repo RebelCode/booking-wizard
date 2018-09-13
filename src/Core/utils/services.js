@@ -1,4 +1,5 @@
 import humanizeDuration from './humanizeDuration'
+import stringHelpers from './stringHelpers'
 import makeMapStore from './makeMapStore'
 
 /**
@@ -12,6 +13,8 @@ import makeMapStore from './makeMapStore'
  */
 export default function (dependencies) {
   return {
+    ...stringHelpers(dependencies),
+
     ...humanizeDuration(dependencies),
 
     /**

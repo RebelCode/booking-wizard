@@ -38,6 +38,13 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       /**
        * @since [*next-version*]
        *
+       * @property {Function} kebabToCamelCase Transform kebab cased string to camel cased string.
+       */
+      kebabToCamelCase: 'kebabToCamelCase',
+
+      /**
+       * @since [*next-version*]
+       *
        * @property {Function} handleBookSuccess Function for handling successful booking creation response.
        */
       handleBookSuccess: 'handleBookSuccess',
@@ -289,17 +296,33 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
        * Set application's store structure according configuration. This is
        * required because Vuex works with defined state structure.
        *
-       * Store state structure is defined in the `bookingDataMap` var.
+       * Bookings store state structure is defined in the `bookingDataMap` var.
        *
        * @since [*next-version*]
        */
       _hydrateStore () {
         this.$store.replaceState(Object.assign({}, this.$store.state, {
           booking: Object.values(bookingDataMap).reduce((obj, key) => {
-            obj[key] = null;
-            return obj;
-          }, {})
+            obj[key] = null
+            return obj
+          }, {}),
+          settings: this._getSettings()
         }))
+      },
+
+      /**
+       * Get settings for wizard. Settings are coming from component's attributes
+       * that are not registered as props.
+       *
+       * @since [*next-version*]
+       *
+       * @return {object} Prepared settings holder.
+       */
+      _getSettings () {
+        return Object.keys(this.$attrs).reduce((settings, key) => {
+          settings[this.kebabToCamelCase(key)] = this.$attrs[key]
+          return settings
+        }, {})
       },
     },
 
