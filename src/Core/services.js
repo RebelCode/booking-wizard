@@ -60,7 +60,7 @@ export default function (dependencies) {
     authorizedHttpClient (container) {
       return container.httpClient.create({
         headers: {
-          // 'X-EDDBK-Nonce': container.state.wpRestNonce
+          'X-EDDBK-Nonce': container.state.wpRestNonce
         }
       })
     },
