@@ -1,6 +1,6 @@
 {
   "name": "@rebelcode/booking-wizard",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Booking wizard on customer's side",
   "main": "dist/js/app.min.js",
   "scripts": {
