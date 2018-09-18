@@ -28,10 +28,18 @@ let config = {
   ],
   module: {
     rules: [
-      {test: /\.js$/, loader: 'babel-loader'},
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules|bower_components)/,
+      },
       {
         test: /\.scss$/,
-        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
       }
     ]
   },
