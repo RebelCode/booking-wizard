@@ -28,7 +28,6 @@ import * as uiFramework from '@rebelcode/ui-framework'
 import lodash from 'lodash'
 import * as formWizard from 'vue-form-wizard'
 
-
 const dependencies = {
   bookingWizard,
   uiFramework,
@@ -47,8 +46,6 @@ const dependencies = {
   humanizeDuration,
   formWizard
 }
-
-console.info(dependencies)
 
 document.addEventListener('DOMContentLoaded', function () {
   const di = new dependencies.bottle()
@@ -135,8 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const asyncStyles = window.EDDBK_WIZARD_REQUIRE_STYLES
 
   if (asyncStyles) {
-    for (var i = 0; i < asyncStyles.length; i++) {
-      var styleLink = asyncStyles[i]
+    for (let styleLink of asyncStyles) {
       loadCss(styleLink)
     }
   }

@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Changed
+- All JS dependencies moved to one bundle to avoid using require.js.
+
 ## [0.1.5] - 2018-09-13
 ### Added
 - Added settings module to wizard's store.

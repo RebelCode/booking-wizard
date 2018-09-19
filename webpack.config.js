@@ -1,6 +1,7 @@
-var debug = process.env.NODE_ENV !== 'production'
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const debug = process.env.NODE_ENV !== 'production'
+
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 let config = {
@@ -8,22 +9,14 @@ let config = {
   context: __dirname,
   devtool: debug ? 'inline-sourcemap' : false,
   plugins: debug ? [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      inject: true
-    }),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "app.min.css",
     })
   ] : [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "../wizard.css",
+      filename: "app.min.css",
     })
   ],
   module: {
@@ -37,7 +30,12 @@ let config = {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
           'sass-loader'
         ],
       }
@@ -45,11 +43,31 @@ let config = {
   },
   entry: './src/index.js',
   output: {
-    path: __dirname + '/dist/js',
+    path: __dirname + '/dist',
     filename: 'app.min.js',
     libraryTarget: 'umd',
     library: 'bookingWizard',
     umdNamedDefine: true,
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.common.js',
+    }
+  }
+}
+
+if (!debug) {
+  config.optimization = {
+    minimizer: [
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            drop_console: true
+          }
+        }
+      })
+    ]
   }
 }
 
