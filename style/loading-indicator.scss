@@ -37,6 +37,9 @@
       box-shadow: 0 -3px 0 5px #fff inset;
       left: calc(50% - 3px);
       top: calc(50% - 13px);
+      @include breakpoint(mobile) {
+        top: calc(50% + 1px);
+      }
     }
   }
 }

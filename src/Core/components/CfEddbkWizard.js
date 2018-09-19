@@ -293,6 +293,18 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
       },
 
       /**
+       * Make sure that wizard top point in the viewport when step changes.
+       *
+       * @since [*next-version*]
+       */
+      onStepChange () {
+        const wizardElementViewportPosition = this.$refs.wizard.$el.getBoundingClientRect()
+        if (wizardElementViewportPosition.y < -110) {
+          window.scrollTo(window.pageXOffset, window.pageYOffset + wizardElementViewportPosition.y)
+        }
+      },
+
+      /**
        * Set application's store structure according configuration. This is
        * required because Vuex works with defined state structure.
        *

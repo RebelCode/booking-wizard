@@ -38,16 +38,29 @@
   margin: 1rem 0;
   font-size: $font-size;
 
+  @include breakpoint(mobile) {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
   label {
     font-weight: bold;
     width: 38%;
     padding: 10px 8px 10px 0;
 
     flex-shrink: 0;
+
+    @include breakpoint(mobile) {
+      width: 100%;
+      display: block;
+    }
   }
 
   & > div {
     width: 62%;
+    @include breakpoint(mobile) {
+      width: 100%;
+    }
   }
 
   &--light {

@@ -1,5 +1,7 @@
 @import '~vue-form-wizard/src/assets/wizard.scss';
 
+$sticky-top-limit: 230px;
+
 .edd-booking-wizard {
   //font-family: $font-family;
   //color: $black;
@@ -34,11 +36,36 @@
     }
   }
 
+  .wizard-navigation {
+    @include breakpoint(mobile) {
+      margin-bottom: -$sticky-top-limit;
+    }
+  }
+
   .wizard-footer-back {
     margin-right: 8px;
     background-color: white !important;
     color: $black !important;
     border-color: $dark-gray !important;
+  }
+
+  .wizard-card-footer {
+    @include breakpoint(mobile) {
+      background-color: white;
+      position: sticky;
+      bottom: 0;
+      margin-top: $sticky-top-limit;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  .wizard-tab-content {
+    @include breakpoint(mobile) {
+      padding-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 
   .service {
