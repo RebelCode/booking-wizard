@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Fixed
+- Bad responsive layout on mobile phones.
+
 ## [0.2.0] - 2018-09-19
 ### Changed
 - All JS dependencies moved to one bundle to avoid using require.js.
