@@ -47,6 +47,22 @@ export default function (dependencies) {
         }
         return createInTimezone(value, timezone)
       }
+    },
+
+    /**
+     * Function for creating datetime with the same time in local timezone.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {CreateSameLocalDatetimeFunction}
+     */
+    createSameLocalDatetime (container) {
+      const createInTimezone = dependencies.stdLib.makeParseInTimezone(container.moment)
+      return function (value) {
+        return createInTimezone(value, this.timezone)
+      }
     }
   }
 }
