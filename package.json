@@ -9,7 +9,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@rebelcode/booking-wizard-components": "^0.1.9",
+    "@rebelcode/booking-wizard-components": "^0.1.10",
     "@rebelcode/std-lib": "^0.1.5",
     "@rebelcode/ui-framework": "^0.1.2",
     "axios": "^0.18.0",
