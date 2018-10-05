@@ -16,7 +16,13 @@ export default function () {
        */
       '_': {
         from: 'translate'
-      }
+      },
+      /**
+       * @since [*next-version*]
+       *
+       * @property {Function} getLabel Function for getting labels.
+       */
+      'getLabel': 'getLabel'
     }
   }
 }
