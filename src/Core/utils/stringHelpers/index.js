@@ -9,6 +9,22 @@
  */
 export default function (dependencies) {
   return {
+    'markdownReplace' (container) {
+      const rules = {
+        '\\*(.*?)\\\*': (match, text) => {
+          return `<strong>${text}</strong>`
+        }
+      }
+      return str => {
+        for (let regexp of Object.keys(rules)) {
+          console.info(str, regexp)
+          const expression = new RegExp(regexp, '\g')
+          str = str.replace(expression, rules[regexp])
+          console.info(str, 'after')
+        }
+        return str
+      }
+    },
     'kebabToCamelCase' () {
       /**
        * Transform kebab cased string to camel cased string.
@@ -34,7 +50,7 @@ export default function (dependencies) {
        */
       return (labelKey, params) => {
         const format = container.lodash.get(container.state.applicationLabels, labelKey, labelKey)
-        return container.textFormatter(format, params)
+        return container.markdownReplace(container.textFormatter(format, params))
       }
     }
   }
