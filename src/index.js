@@ -54,8 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const container = new uiFramework.Container.Container(di)
   const app = new uiFramework.Core.App(container)
 
-  app.init()
   container.container.vue.mixin(container.container.TranslateCapable)
+
+  app.init()
 
   function defineServices (di, dependencies) {
     var serviceList = dependencies.bookingWizard.makeServices(dependencies)

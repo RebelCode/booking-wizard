@@ -17,10 +17,8 @@ export default function (dependencies) {
       }
       return str => {
         for (let regexp of Object.keys(rules)) {
-          console.info(str, regexp)
           const expression = new RegExp(regexp, '\g')
           str = str.replace(expression, rules[regexp])
-          console.info(str, 'after')
         }
         return str
       }
