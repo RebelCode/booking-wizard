@@ -193,7 +193,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
 
         return {
           isOtherSessionsAvailable: Object.keys(this.service.sessionLengths).length > 1,
-          pricePreview: this._('Starting at %s for a %s appointment.', [
+          pricePreview: this.getLabel('preview.price', [
             this._minSessionLength.price.formatted,
             this.nonPluralHumanizeDuration(this._minSessionLength.sessionLength * 1000)
           ])

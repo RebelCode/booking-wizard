@@ -6,17 +6,22 @@
  *
  * @return {object}
  */
-export default function () {
+export default function (translate, getLabel) {
   return {
-    inject: {
+    methods: {
       /**
        * @since [*next-version*]
        *
        * @property {Function} _ Function for translating strings.
        */
-      '_': {
-        from: 'translate'
-      }
+      '_': translate,
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {Function} getLabel Function for getting labels.
+       */
+      'getLabel': getLabel
     }
   }
 }

@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const container = new uiFramework.Container.Container(di)
   const app = new uiFramework.Core.App(container)
 
+  container.container.vue.mixin(container.container.TranslateCapable)
+
   app.init()
 
   function defineServices (di, dependencies) {

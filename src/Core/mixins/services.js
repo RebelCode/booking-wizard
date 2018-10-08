@@ -31,8 +31,8 @@ export default function (dependencies) {
      *
      * @return {object}
      */
-    TranslateCapable () {
-      return TranslateCapable()
+    TranslateCapable (container) {
+      return TranslateCapable(container.translate, container.getLabel)
     },
 
     /**
