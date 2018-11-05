@@ -192,10 +192,10 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
         }
 
         return {
-          isOtherSessionsAvailable: Object.keys(this.service.sessionLengths).length > 1,
+          isOtherSessionsAvailable: Object.keys(this.service.sessionTypes).length > 1,
           pricePreview: this.getLabel('preview.price', [
             this._minSessionLength.price.formatted,
-            this.nonPluralHumanizeDuration(this._minSessionLength.sessionLength * 1000)
+            this.nonPluralHumanizeDuration(this._minSessionLength.data.duration * 1000)
           ])
         }
       },
@@ -209,7 +209,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
         if (!this.service) {
           return
         }
-        return this.service.sessionLengths.reduce((p, v) => p.sessionLength < v.sessionLength ? p : v)
+        return this.service.sessionTypes.reduce((p, v) => p.data.duration < v.data.duration ? p : v)
       },
 
       /**
