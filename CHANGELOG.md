@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Changed
+- Using labels for session types.
+
 ## [0.2.3] - 2018-10-08
 ### Added
 - Using labels from backend in the wizard's UI.
