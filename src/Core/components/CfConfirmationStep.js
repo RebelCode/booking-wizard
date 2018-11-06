@@ -56,7 +56,7 @@ export default function (TranslateCapable, CreateDatetimeCapable, MapBookingFiel
         if (!this.session) {
           return
         }
-        return this.service.sessionLengths.find(sessionLength => sessionLength.sessionLength === this.session.duration)
+        return this.service.sessionTypes.find(sessionType => sessionType.data.duration === this.session.duration)
       }
     }
   }
