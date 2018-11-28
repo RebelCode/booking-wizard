@@ -251,7 +251,7 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
           start: this.session.start,
           end: this.session.end,
           service: this.service.id,
-          resource: this.session.resource,
+          resources: this.session.resources,
           transition: this.configuration.initialBookingTransition,
         }, this.bookingState)).then((response) => {
           this.isCreatingBooking = false
