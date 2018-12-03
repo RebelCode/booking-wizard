@@ -45,6 +45,19 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
       value: {}
     },
 
+    methods: {
+      /**
+       * Update filter values.
+       *
+       * @since [*next-version*]
+       *
+       * @param values
+       */
+      updateFilterValues (values) {
+        this.$emit('exposed', values)
+      },
+    },
+
     components: {
       'service-session-selector': 'service-session-selector',
       'timezone-select': 'timezone-select'

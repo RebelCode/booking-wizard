@@ -120,7 +120,14 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
          *
          * @property {string} errorMessage Error message if booking is not created.
          */
-        errorMessage: null
+        errorMessage: null,
+
+        /**
+         * @since [*next-version*]
+         *
+         * @property {object} filterValues Selected booking filters.
+         */
+        filterValues: {}
       }
     },
 
@@ -237,6 +244,17 @@ export default function (store, bookingDataMap, TranslateCapable, MapBookingFiel
     },
 
     methods: {
+      /**
+       * Update filter values.
+       *
+       * @since [*next-version*]
+       *
+       * @param values
+       */
+      updateFilterValues (values) {
+        this.filterValues = values
+      },
+
       /**
        * Create booking on server and redirect user to cart, if url is
        * passed to component's config.
