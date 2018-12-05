@@ -59,6 +59,19 @@ export default function (dependencies) {
      */
     CreateDatetimeCapable (container) {
       return dependencies.bookingWizardComponents.MfCreateDatetimeCapable(container.moment)
+    },
+
+    /**
+     * Mixin for providing filterable feature in the session selector.
+     *
+     * @since [*next-version*]
+     *
+     * @param {Container} container DI Container.
+     *
+     * @return {object}
+     */
+    SessionsFilterCapable (container) {
+      return dependencies.bookingWizardComponents.MfSessionsFilterCapable(container.moment)
     }
   }
 }

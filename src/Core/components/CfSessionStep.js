@@ -17,7 +17,14 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
        *
        * @property {object} `timezone-select` Timezone selector component's definition.
        */
-      'timezone-select': 'timezone-select'
+      'timezone-select': 'timezone-select',
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} state The application's state.
+       */
+      state: 'state',
     },
 
     props: {
@@ -36,6 +43,19 @@ export default function (VModelProxy, TranslateCapable, MapBookingFieldsCapable)
        * @property {BookingSession} value Selected booking session, model for current component.
        */
       value: {}
+    },
+
+    methods: {
+      /**
+       * Update filter values.
+       *
+       * @since [*next-version*]
+       *
+       * @param values
+       */
+      updateFilterValues (values) {
+        this.$emit('exposed', values)
+      },
     },
 
     components: {

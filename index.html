@@ -135,8 +135,7 @@
                     :selected-day.sync="selectedDay"
                     :session.sync="session"
                     :loading="isSessionsLoading"
-                    :selected-session-length="sessionDuration"
-                    :available-sessions="sessions"
+                    :available-sessions="filteredSessions"
                     :prev-available-day.sync="prevAvailableDay"
                     :next-available-day.sync="nextAvailableDay"
                     @changedMonth="loadSessions"
@@ -153,7 +152,6 @@
                 ></date-navigator>
                 <session-time-picker v-model="session"
                                      :selected-day.sync="selectedDay"
-                                     :selected-session-length="sessionDuration"
                                      :service="service"
                                      :timezone="timezone"
                                      :sessions="selectedDaySessions"

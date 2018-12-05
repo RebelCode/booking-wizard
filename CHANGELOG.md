@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
 ### Changed
+- Using version `0.1.12` of `booking-wizard-components`.
+- Using new session types.
 - Using labels for session types.
 
 ## [0.2.3] - 2018-10-08

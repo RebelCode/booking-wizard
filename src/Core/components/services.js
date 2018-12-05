@@ -94,20 +94,10 @@ export default function (dependencies) {
     'service-session-selector' (container) {
       return dependencies.bookingWizardComponents.CfServiceSessionSelector(
         container.CreateDatetimeCapable,
+        container.SessionsFilterCapable,
         container.sessionApi,
         container.config.datetime
       )
-    },
-
-    /**
-     * Component for selecting session duration.
-     *
-     * @since [*next-version*]
-     *
-     * @return {object}
-     */
-    'session-duration-picker' () {
-      return dependencies.bookingWizardComponents.CfSessionDurationPicker()
     },
 
     /**

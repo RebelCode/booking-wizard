@@ -27,6 +27,13 @@ export default function (TranslateCapable, CreateDatetimeCapable, MapBookingFiel
        * @property {BookingSession|null} session Selected booking session.
        */
       session: {},
+
+      /**
+       * @since [*next-version*]
+       *
+       * @property {object} filterValues Selected booking filters.
+       */
+      filterValues: {}
     },
 
     computed: {
@@ -39,11 +46,25 @@ export default function (TranslateCapable, CreateDatetimeCapable, MapBookingFiel
         if (!this._selectedSessionDuration) {
           return
         }
+
+        let duration = this.nonPluralHumanizeDuration(this.session.duration * 1000)
+
+        let sessionType = this.filterValues.duration
+        if (sessionType.label) {
+          duration = `${sessionType.label} (${duration})`
+        }
+
+        let staffMember = null
+        if (this.filterValues.staffMember) {
+          staffMember = this.filterValues.staffMember.name
+        }
+
         return {
           service: this.service.name,
           price: this._selectedSessionDuration.price.formatted,
           start: this.createLocalDatetime(this.session.start).format(dateFormats.appointmentStart),
-          duration: this.nonPluralHumanizeDuration(this.session.duration * 1000)
+          duration,
+          staffMember
         }
       },
 
